@@ -12,9 +12,12 @@ public class MessagesView: UICollectionView {
 
     public func scrollToBottom(animated: Bool = false) {
         let collectionViewContentHeight: CGFloat = collectionViewLayout.collectionViewContentSize.height
-        let offsetY: CGFloat = collectionViewContentHeight - (self.bounds.height - self.contentInset.top - self.contentInset.bottom - self.safeAreaInsets.bottom)
-        self.performBatchUpdates(nil) { _ in
-            self.setContentOffset(CGPoint(x: 0, y: offsetY), animated: animated)
+        let visibleRectHeight: CGFloat = (self.bounds.height - self.contentInset.top - self.contentInset.bottom - self.safeAreaInsets.bottom)
+        if collectionViewContentHeight > visibleRectHeight {
+            let offsetY: CGFloat = collectionViewContentHeight - visibleRectHeight
+            self.performBatchUpdates(nil) { _ in
+                self.setContentOffset(CGPoint(x: 0, y: offsetY), animated: animated)
+            }
         }
     }
 }

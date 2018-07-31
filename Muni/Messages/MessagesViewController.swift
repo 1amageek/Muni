@@ -24,7 +24,7 @@ extension Muni {
 
         public private(set) var collectionView: MessagesView!
 
-        open let textView: UITextView = {
+        open var textView: UITextView = {
             let textView: UITextView = UITextView(frame: .zero)
             textView.layer.cornerRadius = 8
             textView.layer.borderColor = UIColor.lightGray.cgColor
@@ -160,7 +160,9 @@ extension Muni {
             let sender: UserType = UserType(id: senderID, value: [:])
             transcript.from.set(sender)
             transcript.to.set(room)
-            self.willSend(transcript: transcript)
+            if !self.willSend(transcript: transcript) {
+                return
+            }
             room.recentTranscript = transcript.value as! [String : Any]
             let batch: WriteBatch = Firestore.firestore().batch()
             transcript.save(batch) { [weak self] (ref, error) in
@@ -169,8 +171,8 @@ extension Muni {
         }
 
         /// override method
-        open func willSend(transcript: TranscriptType) {
-
+        open func willSend(transcript: TranscriptType) -> Bool {
+            return false
         }
 
         /// override method

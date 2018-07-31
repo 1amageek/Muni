@@ -110,7 +110,6 @@
 		12298911210AFAD600068424 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		12298915210B021700068424 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		12298917210B022400068424 /* ViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewController.storyboard; sourceTree = "<group>"; };
-		1229891B210B11FA00068424 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		1229891D210B146D00068424 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		123A551B210C377F0084A3E9 /* MessagesViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewFlowLayout.swift; sourceTree = "<group>"; };
 		128180CA2110441E00F1E20D /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
@@ -241,7 +240,6 @@
 				12298908210AF80000068424 /* Transcript.swift */,
 				128180D821104FEC00F1E20D /* MessageViewController.swift */,
 				128180E62110648600F1E20D /* BoxViewController.swift */,
-				1229891B210B11FA00068424 /* MessagesViewController.swift */,
 				12EEB626210BF2FD0023CC04 /* Cell */,
 				12298915210B021700068424 /* ViewController.swift */,
 				12298917210B022400068424 /* ViewController.storyboard */,

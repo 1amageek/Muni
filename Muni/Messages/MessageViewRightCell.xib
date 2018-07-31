@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageViewRightCell" id="aZo-tz-Gvv" customClass="MessageViewRightCell" customModule="Sample" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageViewRightCell" id="aZo-tz-Gvv" customClass="MessageViewRightCell" customModule="Muni" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="378" height="125"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -21,10 +21,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vs2-iT-ScS">
-                        <rect key="frame" x="312" y="0.0" width="58" height="125"/>
+                        <rect key="frame" x="304" y="0.0" width="66" height="125"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rd-uv-yEV">
-                                <rect key="frame" x="8" y="8" width="42" height="109"/>
+                                <rect key="frame" x="12" y="8" width="42" height="109"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -32,9 +32,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.91703772668393779" green="0.91703772668393779" blue="0.91703772668393779" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6Rd-uv-yEV" secondAttribute="trailing" constant="8" id="26e-2G-Gp6"/>
+                            <constraint firstAttribute="trailing" secondItem="6Rd-uv-yEV" secondAttribute="trailing" constant="12" id="26e-2G-Gp6"/>
                             <constraint firstItem="6Rd-uv-yEV" firstAttribute="top" secondItem="Vs2-iT-ScS" secondAttribute="top" constant="8" id="Ou1-Mi-Xah"/>
-                            <constraint firstItem="6Rd-uv-yEV" firstAttribute="leading" secondItem="Vs2-iT-ScS" secondAttribute="leading" constant="8" id="Wr2-sO-GnI"/>
+                            <constraint firstItem="6Rd-uv-yEV" firstAttribute="leading" secondItem="Vs2-iT-ScS" secondAttribute="leading" constant="12" id="Wr2-sO-GnI"/>
                             <constraint firstAttribute="bottom" secondItem="6Rd-uv-yEV" secondAttribute="bottom" constant="8" id="rlv-AX-Nra"/>
                         </constraints>
                     </view>
