@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JEa-Pd-XeP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="LWg-jO-7ag">
+            <objects>
+                <viewController id="JEa-Pd-XeP" customClass="ViewController" customModule="Sample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QAE-AE-Jv9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JD4-Vb-hED">
+                                <rect key="frame" x="32" y="220" width="311" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGl-XD-VDF">
+                                <rect key="frame" x="32" y="282" width="311" height="30"/>
+                                <state key="normal" title="Add Room"/>
+                                <connections>
+                                    <action selector="addRoom:" destination="JEa-Pd-XeP" eventType="touchUpInside" id="Gig-OL-t5r"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mPf-0C-6jd" firstAttribute="trailing" secondItem="JD4-Vb-hED" secondAttribute="trailing" constant="32" id="OPZ-lr-kby"/>
+                            <constraint firstItem="yGl-XD-VDF" firstAttribute="leading" secondItem="mPf-0C-6jd" secondAttribute="leading" constant="32" id="UDu-vA-iDi"/>
+                            <constraint firstItem="yGl-XD-VDF" firstAttribute="top" secondItem="JD4-Vb-hED" secondAttribute="bottom" constant="32" id="iqh-o1-TFz"/>
+                            <constraint firstItem="JD4-Vb-hED" firstAttribute="top" secondItem="mPf-0C-6jd" secondAttribute="top" constant="200" id="pJ5-gc-Bgj"/>
+                            <constraint firstItem="JD4-Vb-hED" firstAttribute="leading" secondItem="mPf-0C-6jd" secondAttribute="leading" constant="32" id="rdJ-UG-iRR"/>
+                            <constraint firstItem="mPf-0C-6jd" firstAttribute="trailing" secondItem="yGl-XD-VDF" secondAttribute="trailing" constant="32" id="vGe-UN-1tu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mPf-0C-6jd"/>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="JD4-Vb-hED" id="uel-jm-K5c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WhL-mt-wMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-31" y="137"/>
+        </scene>
+    </scenes>
+</document>
