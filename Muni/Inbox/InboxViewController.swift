@@ -19,13 +19,21 @@ extension Muni {
 
         public let limit: Int
 
+        open var dateFormatter: DateFormatter = {
+            let dateFormatter: DateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .none
+            dateFormatter.timeStyle = .short
+            dateFormatter.doesRelativeDateFormatting = true
+            return dateFormatter
+        }()
+
         public init(userID: String, limit: Int = 20) {
             self.userID = userID
             self.limit = limit
             let options: Options = Options()
-            options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: true)]
+            options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
             self.dataSource = RoomType.where("members.\(userID)", isEqualTo: true)
-                .order(by: "updatedAt", descending: false)
+                .order(by: "updatedAt", descending: true)
                 .limit(to: limit)
                 .dataSource(options: options)
             super.init(nibName: nil, bundle: nil)
@@ -43,11 +51,6 @@ extension Muni {
         open override func viewDidLoad() {
             super.viewDidLoad()
             self.dataSource
-                .on(parse: { (_, room, done) in
-                    room.configs.get(self.userID) { (config, error) in
-                        done(room)
-                    }
-                })
                 .on({ [weak self] (snapshot, changes) in
                     guard let tableView: UITableView = self?.tableView else { return }
                     switch changes {
@@ -73,18 +76,18 @@ extension Muni {
             let room: RoomType = self.dataSource[indexPath.item]
             let cell: InboxViewCell = tableView.dequeueReusableCell(withIdentifier: "InboxViewCell", for: indexPath) as! InboxViewCell
 
+            cell.dateLabel.text = self.dateFormatter.string(from: room.updatedAt)
+
             if let name: String = room.name {
                 cell.nameLabel.text = name
-            } else {
-                room.configs.get(self.userID) { (config, error) in
-                    cell.nameLabel.text = config?.name
-                    cell.setNeedsLayout()
-                }
+            } else if let config: [String: Any] = room.config[self.userID] as? [String: Any] {
+                cell.nameLabel.text = config["name"] as? String
             }
 
             if let text: String = room.recentTranscript["text"] as? String {
                 cell.messageLabel?.text = text
             }
+
             return cell
         }
 

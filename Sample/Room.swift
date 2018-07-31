@@ -16,5 +16,6 @@ class Room: Object, RoomProtocol {
     dynamic var profileImage: File?
     dynamic var members: Set<String> = []
     dynamic var recentTranscript: [String: Any] = [:]
+    dynamic var config: [String: Any] = [:]
     dynamic var configs: NestedCollection<Config> = []
 }

@@ -26,12 +26,14 @@ class ViewController: UIViewController {
             let config: RoomConfig = RoomConfig(id: userID)
             config.name = user.uid
             room.configs.insert(config)
+            room.config[userID] = ["name": user.uid]
         }
 
         do {
             let config: RoomConfig = RoomConfig(id: user.uid)
             config.name = userID
             room.configs.insert(config)
+            room.config[user.uid] = ["name": userID]
         }
 
         room.save { [weak self] (_, _) in

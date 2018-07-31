@@ -16,6 +16,7 @@ public protocol RoomProtocol {
     var profileImage: File? { get set }
     var members: Set<String> { get set }
     var recentTranscript: [String: Any] { get set }
+    var config: [String: Any] { get set }
     var configs: NestedCollection<Config> { get set }
 }
 

@@ -18,5 +18,16 @@ class InboxViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.thumbnailImageView.layer.cornerRadius = 32
+        self.nameLabel.text = nil
+        self.messageLabel.text = nil
+        self.dateLabel.text = nil
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.thumbnailImageView.image = nil
+        self.nameLabel.text = nil
+        self.messageLabel.text = nil
+        self.dateLabel.text = nil
     }
 }
