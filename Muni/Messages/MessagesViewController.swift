@@ -26,7 +26,8 @@ extension Muni {
 
         open var textView: UITextView = {
             let textView: UITextView = UITextView(frame: .zero)
-            textView.layer.cornerRadius = 8
+            textView.font = UIFont.systemFont(ofSize: 15)
+            textView.layer.cornerRadius = 12
             textView.layer.borderColor = UIColor.lightGray.cgColor
             textView.layer.borderWidth = 1 / UIScreen.main.scale
             return textView
@@ -50,6 +51,14 @@ extension Muni {
         open override var shouldAutorotate: Bool {
             return false
         }
+
+        open var dateFormatter: DateFormatter = {
+            let dateFormatter: DateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .none
+            dateFormatter.timeStyle = .short
+            dateFormatter.doesRelativeDateFormatting = true
+            return dateFormatter
+        }()
 
         internal var collectionViewBottomInset: CGFloat = 0 {
             didSet {
@@ -194,10 +203,12 @@ extension Muni {
             if transcript.from.id! == senderID {
                 let cell: MessageViewRightCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewRightCell", for: indexPath) as! MessageViewRightCell
                 cell.textLabel.text = transcript.text
+                cell.dateLabel.text = self.dateFormatter.string(from: transcript.updatedAt)
                 return cell
             } else {
                 let cell: MessageViewLeftCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewLeftCell", for: indexPath) as! MessageViewLeftCell
                 cell.textLabel.text = transcript.text
+                cell.dateLabel.text = self.dateFormatter.string(from: transcript.updatedAt)
                 return cell
             }
         }

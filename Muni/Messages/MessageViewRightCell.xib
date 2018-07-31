@@ -38,18 +38,27 @@
                             <constraint firstAttribute="bottom" secondItem="6Rd-uv-yEV" secondAttribute="bottom" constant="8" id="rlv-AX-Nra"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuJ-WJ-qUE">
+                        <rect key="frame" x="265" y="110.5" width="31" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="Vs2-iT-ScS" firstAttribute="width" relation="lessThanOrEqual" secondItem="aZo-tz-Gvv" secondAttribute="width" multiplier="2:3" id="3L4-OI-qgu"/>
+                <constraint firstAttribute="bottom" secondItem="xuJ-WJ-qUE" secondAttribute="bottom" id="9Jd-Oe-sSx"/>
                 <constraint firstItem="Vs2-iT-ScS" firstAttribute="top" secondItem="aZo-tz-Gvv" secondAttribute="top" id="B2c-97-H7R"/>
                 <constraint firstAttribute="bottom" secondItem="Vs2-iT-ScS" secondAttribute="bottom" id="Dcq-hN-ZLD"/>
+                <constraint firstItem="Vs2-iT-ScS" firstAttribute="leading" secondItem="xuJ-WJ-qUE" secondAttribute="trailing" constant="8" id="Re9-pe-Uth"/>
                 <constraint firstAttribute="trailing" secondItem="Vs2-iT-ScS" secondAttribute="trailing" constant="8" id="U2S-5A-Vgd"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="AFW-KS-1bX"/>
             <size key="customSize" width="378" height="125"/>
             <connections>
                 <outlet property="balloonView" destination="Vs2-iT-ScS" id="K5G-O3-XTd"/>
+                <outlet property="dateLabel" destination="xuJ-WJ-qUE" id="Jeb-Av-48D"/>
                 <outlet property="textLabel" destination="6Rd-uv-yEV" id="2up-Fg-Xrb"/>
             </connections>
             <point key="canvasLocation" x="11" y="48.5"/>

@@ -46,6 +46,12 @@
                             <constraint firstItem="sco-r2-HLR" firstAttribute="leading" secondItem="agN-lG-weS" secondAttribute="leading" constant="12" id="jUt-z9-9wD"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42N-FB-NQu">
+                        <rect key="frame" x="107.5" y="94.5" width="31" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
@@ -53,13 +59,16 @@
                 <constraint firstAttribute="bottom" secondItem="b4O-Fk-zva" secondAttribute="bottom" id="4s5-Jn-gxB"/>
                 <constraint firstItem="agN-lG-weS" firstAttribute="leading" secondItem="b4O-Fk-zva" secondAttribute="trailing" constant="8" id="66i-sp-vYj"/>
                 <constraint firstItem="b4O-Fk-zva" firstAttribute="leading" secondItem="NmB-8L-Z2A" secondAttribute="leading" constant="8" id="9wj-lm-eBy"/>
+                <constraint firstItem="42N-FB-NQu" firstAttribute="leading" secondItem="agN-lG-weS" secondAttribute="trailing" constant="8" id="Au4-s1-ukN"/>
                 <constraint firstAttribute="bottom" secondItem="agN-lG-weS" secondAttribute="bottom" id="IvX-K1-T7v"/>
+                <constraint firstAttribute="bottom" secondItem="42N-FB-NQu" secondAttribute="bottom" id="k2i-FN-92D"/>
                 <constraint firstItem="agN-lG-weS" firstAttribute="width" relation="lessThanOrEqual" secondItem="NmB-8L-Z2A" secondAttribute="width" multiplier="2:3" id="wDA-Bj-WqR"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="y0t-lc-WEp"/>
             <size key="customSize" width="369" height="109"/>
             <connections>
                 <outlet property="balloonView" destination="agN-lG-weS" id="ep9-cY-WLl"/>
+                <outlet property="dateLabel" destination="42N-FB-NQu" id="DGS-r7-9iq"/>
                 <outlet property="textLabel" destination="sco-r2-HLR" id="mp0-cF-uWu"/>
                 <outlet property="thumbnailImageView" destination="b4O-Fk-zva" id="3oK-3V-6WR"/>
             </connections>
