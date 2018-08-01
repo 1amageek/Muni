@@ -25,6 +25,7 @@
 		12298918210B022400068424 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12298917210B022400068424 /* ViewController.storyboard */; };
 		1229891E210B146D00068424 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1229891D210B146D00068424 /* MessagesView.swift */; };
 		123A551C210C377F0084A3E9 /* MessagesViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A551B210C377F0084A3E9 /* MessagesViewFlowLayout.swift */; };
+		124A08432112132100C235CA /* Muni.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 124A08422112132100C235CA /* Muni.podspec */; };
 		128180CB2110441E00F1E20D /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180CA2110441E00F1E20D /* UserProtocol.swift */; };
 		128180CD2110443000F1E20D /* RoomProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180CC2110443000F1E20D /* RoomProtocol.swift */; };
 		128180CF2110444400F1E20D /* TranscriptProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180CE2110444400F1E20D /* TranscriptProtocol.swift */; };
@@ -111,6 +112,7 @@
 		12298917210B022400068424 /* ViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewController.storyboard; sourceTree = "<group>"; };
 		1229891D210B146D00068424 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		123A551B210C377F0084A3E9 /* MessagesViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewFlowLayout.swift; sourceTree = "<group>"; };
+		124A08422112132100C235CA /* Muni.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Muni.podspec; sourceTree = "<group>"; };
 		128180CA2110441E00F1E20D /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
 		128180CC2110443000F1E20D /* RoomProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomProtocol.swift; sourceTree = "<group>"; };
 		128180CE2110444400F1E20D /* TranscriptProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptProtocol.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		122988A8210ADFEE00068424 = {
 			isa = PBXGroup;
 			children = (
+				124A08422112132100C235CA /* Muni.podspec */,
 				122988B4210ADFEE00068424 /* Muni */,
 				122988BF210ADFEE00068424 /* MuniTests */,
 				122988D1210AE10D00068424 /* Sample */,
@@ -486,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				128180E42110620900F1E20D /* InboxViewCell.xib in Resources */,
+				124A08432112132100C235CA /* Muni.podspec in Resources */,
 				128180DC2110568000F1E20D /* MessageViewLeftCell.xib in Resources */,
 				128180DE2110568000F1E20D /* MessageViewRightCell.xib in Resources */,
 			);
