@@ -178,6 +178,7 @@ extension Muni {
             self.collectionViewBottomInset = keyboardOffsetFrame.height
         }
 
+        /// Call this method to send the message.
         @objc
         public func send() {
             guard let senderID: String = self.senderID else {
@@ -188,13 +189,13 @@ extension Muni {
             let sender: UserType = UserType(id: senderID, value: [:])
             transcript.from.set(sender)
             transcript.to.set(room)
-            if !self.transcript(w)
+            if !self.transcript(willSend: transcript) {
                 return
             }
             room.recentTranscript = transcript.value as! [String : Any]
             let batch: WriteBatch = Firestore.firestore().batch()
             transcript.save(batch) { [weak self] (ref, error) in
-                self?.transcriptDidSend(transcript, reference: ref, error: error)
+                self?.transcript(didSend: transcript, reference: ref, error: error)
             }
         }
 

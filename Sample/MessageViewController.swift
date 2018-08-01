@@ -24,7 +24,7 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         self.toolBar.setItems([ToolbarItem(customView: self.textView), self.sendBarItem], animated: false)
     }
 
-    override func willSend(transcript: Transcript) -> Bool {
+    override func transcript(willSend transcript: Transcript) -> Bool {
         guard let text: String = self.textView.text else { return false }
         if text.isEmpty { return false }
         transcript.text = text

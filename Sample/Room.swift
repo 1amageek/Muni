@@ -12,7 +12,7 @@ import Muni
 @objcMembers
 class Room: Object, RoomProtocol {
     dynamic var name: String?
-    dynamic var thumbnailImageURL: URL?
+    dynamic var thumbnailImage: File?
     dynamic var participants: [String] = []
     dynamic var members: Set<String> = []
     dynamic var recentTranscript: [String: Any] = [:]
