@@ -110,7 +110,7 @@ extension Muni {
 
         open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let room: RoomType = self.dataSource[indexPath.item]
-            let viewController: MessageViewController = MessageViewController(roomID: room.id)
+            let viewController: MessagesViewController = MessagesViewController(roomID: room.id)
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
