@@ -12,33 +12,48 @@ import FirebaseFirestore
 import Toolbar
 
 extension Muni {
-    open class MessagesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    /**
+     A ViewController that displays a message.
+     */
+    open class MessagesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
 
+        /// Returns the Room holding the message.
         public let room: RoomType
 
+        /// Returns the toolbar to display in inputAccessoryView.
         public var toolBar: Toolbar = Toolbar()
 
+        /// limit The maximum number of transcripts to return.
         public let limit: Int
 
+        /// Returns the DataSource of Transcript.
         public var dataSource: DataSource<TranscriptType>
 
+        /// Returns a CollectionView that displays a message.
         public private(set) var collectionView: MessagesView!
 
-        open var textView: UITextView = {
+        /// Returns the textView of inputAccessoryView.
+        open lazy var textView: UITextView = {
             let textView: UITextView = UITextView(frame: .zero)
             textView.font = UIFont.systemFont(ofSize: 15)
             textView.layer.cornerRadius = 12
             textView.layer.borderColor = UIColor.lightGray.cgColor
             textView.layer.borderWidth = 1 / UIScreen.main.scale
+            textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+            textView.delegate = self
             return textView
         }()
 
-        /// override method
+        /// Always override this property.
         open var senderID: String? {
             return nil
         }
 
-        open var scrollsToBottomOnKeybordBeginsEditing: Bool = true
+        /// A Boolean value that determines whether the `MessagesCollectionView` scrolls to the
+        /// bottom whenever the `InputTextView` begins editing.
+        ///
+        /// The default value of this property is `false`.
+        open var scrollsToBottomOnKeybordBeginsEditing: Bool = false
 
         open override var canBecomeFirstResponder: Bool {
             return true
@@ -52,6 +67,7 @@ extension Muni {
             return false
         }
 
+        /// Returns the date format of the message.
         open var dateFormatter: DateFormatter = {
             let dateFormatter: DateFormatter = DateFormatter()
             dateFormatter.dateStyle = .none
@@ -59,6 +75,10 @@ extension Muni {
             dateFormatter.doesRelativeDateFormatting = true
             return dateFormatter
         }()
+
+        // MARK: -
+
+        internal var constraint: NSLayoutConstraint?
 
         internal var collectionViewBottomInset: CGFloat = 0 {
             didSet {
@@ -74,17 +94,15 @@ extension Muni {
 
         internal func addKeyboardObservers() {
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBeginEditing(_:)), name: .UITextViewTextDidBeginEditing, object: nil)
         }
 
         internal func removeKeyboardObservers() {
             NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
-            NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidBeginEditing, object: nil)
         }
 
         // MARK: -
 
-        init(roomID: String, limit: Int = 20) {
+        init(roomID: String, fetching limit: Int = 20) {
             self.limit = limit
             self.room = RoomType(id: roomID, value: [:])
             let options: Options = Options()
@@ -138,6 +156,7 @@ extension Muni {
                             collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
                             collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
                             collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+                            collectionView.scrollToBottom(animated: true)
                         }, completion: nil)
                     case .error(let error):
                         print(error)
@@ -169,23 +188,25 @@ extension Muni {
             let sender: UserType = UserType(id: senderID, value: [:])
             transcript.from.set(sender)
             transcript.to.set(room)
-            if !self.willSend(transcript: transcript) {
+            if !self.transcript(w)
                 return
             }
             room.recentTranscript = transcript.value as! [String : Any]
             let batch: WriteBatch = Firestore.firestore().batch()
             transcript.save(batch) { [weak self] (ref, error) in
-                self?.didSend(transcript: transcript, reference: ref, error: error)
+                self?.transcriptDidSend(transcript, reference: ref, error: error)
             }
         }
 
-        /// override method
-        open func willSend(transcript: TranscriptType) -> Bool {
+        /// Set contents in Transcript.
+        /// It must be overridden.
+        /// - returns: If false is set, messages will not be sent.
+        open func transcript(willSend transcript: TranscriptType) -> Bool {
             return false
         }
 
-        /// override method
-        open func didSend(transcript: TranscriptType, reference: DocumentReference?, error: Error?) {
+        /// Called after the message has been sent.
+        open func transcript(didSend transcript: TranscriptType, reference: DocumentReference?, error: Error?) {
             
         }
 
@@ -245,10 +266,22 @@ extension Muni {
             collectionViewBottomInset = newBottomInset
         }
 
-        @objc internal func textViewDidBeginEditing(_ notification: Notification) {
+        // MARK:
+
+        public func textViewDidBeginEditing(_ textView: UITextView) {
             if scrollsToBottomOnKeybordBeginsEditing {
                 collectionView.scrollToBottom(animated: true)
             }
+        }
+
+        open func textViewDidChange(_ textView: UITextView) {
+            let size: CGSize = textView.sizeThatFits(textView.bounds.size)
+            if let constraint: NSLayoutConstraint = self.constraint {
+                textView.removeConstraint(constraint)
+            }
+            self.constraint = textView.heightAnchor.constraint(equalToConstant: size.height)
+            self.constraint?.priority = .defaultHigh
+            self.constraint?.isActive = true
         }
     }
 }

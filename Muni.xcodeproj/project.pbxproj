@@ -48,7 +48,6 @@
 		128180E72110648600F1E20D /* BoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180E62110648600F1E20D /* BoxViewController.swift */; };
 		128180E8211069BC00F1E20D /* InboxViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 128180E32110620900F1E20D /* InboxViewCell.xib */; };
 		128180E9211069BC00F1E20D /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122988D4210AE10D00068424 /* InboxViewController.swift */; };
-		128180EB2110722C00F1E20D /* RoomConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180EA2110722C00F1E20D /* RoomConfig.swift */; };
 		12EEB61D210B322B0023CC04 /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB61C210B322B0023CC04 /* MessageViewCell.swift */; };
 		12EEB61F210B40D40023CC04 /* MessageViewLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */; };
 		12EEB621210B40E20023CC04 /* MessageViewRightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */; };
@@ -120,7 +119,6 @@
 		128180E1211061E300F1E20D /* InboxViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewCell.swift; sourceTree = "<group>"; };
 		128180E32110620900F1E20D /* InboxViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxViewCell.xib; sourceTree = "<group>"; };
 		128180E62110648600F1E20D /* BoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxViewController.swift; sourceTree = "<group>"; };
-		128180EA2110722C00F1E20D /* RoomConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomConfig.swift; sourceTree = "<group>"; };
 		12EEB61C210B322B0023CC04 /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
 		12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewLeftCell.xib; sourceTree = "<group>"; };
 		12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewRightCell.xib; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 				122988D2210AE10D00068424 /* AppDelegate.swift */,
 				12298904210AF7F100068424 /* User.swift */,
 				12298906210AF7F800068424 /* Room.swift */,
-				128180EA2110722C00F1E20D /* RoomConfig.swift */,
 				12298908210AF80000068424 /* Transcript.swift */,
 				128180D821104FEC00F1E20D /* MessageViewController.swift */,
 				128180E62110648600F1E20D /* BoxViewController.swift */,
@@ -704,7 +701,6 @@
 				128180D721104F9500F1E20D /* MessagesViewController.swift in Sources */,
 				122988D5210AE10D00068424 /* InboxViewController.swift in Sources */,
 				12EEB625210B412A0023CC04 /* MessageViewRightCell.swift in Sources */,
-				128180EB2110722C00F1E20D /* RoomConfig.swift in Sources */,
 				128180E72110648600F1E20D /* BoxViewController.swift in Sources */,
 				128180DA211051EF00F1E20D /* MuniProtocol.swift in Sources */,
 				12EEB61D210B322B0023CC04 /* MessageViewCell.swift in Sources */,

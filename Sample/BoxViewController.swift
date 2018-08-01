@@ -10,7 +10,7 @@ import UIKit
 import Pring
 import FirebaseAuth
 
-class BoxViewController: Muni<User, Room, RoomConfig, Transcript>.InboxViewController {
+class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
 
     override func loadView() {
         super.loadView()

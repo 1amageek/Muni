@@ -8,17 +8,23 @@
 
 import UIKit
 import Pring
-import FirebaseAuth
 
 extension Muni {
+    /**
+     A ViewController that displays conversation-enabled rooms.
+    */
     open class InboxViewController: UITableViewController {
 
-        public let dataSource: DataSource<RoomType>
-
+        /// The ID of the user holding the DataSource.
         public let userID: String
 
+        /// Room's DataSource
+        public let dataSource: DataSource<RoomType>
+
+        /// limit The maximum number of rooms to return.
         public let limit: Int
 
+        /// Returns the date format of the message.
         open var dateFormatter: DateFormatter = {
             let dateFormatter: DateFormatter = DateFormatter()
             dateFormatter.dateStyle = .none
@@ -27,12 +33,14 @@ extension Muni {
             return dateFormatter
         }()
 
-        public init(userID: String, limit: Int = 20) {
+        public init(userID: String, fetching limit: Int = 20) {
             self.userID = userID
             self.limit = limit
             let options: Options = Options()
             options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
-            self.dataSource = RoomType.where("members.\(userID)", isEqualTo: true)
+            self.dataSource = RoomType
+                // FIXME: Firebase SDK 5.5.0
+                .where("members.\(userID)", isEqualTo: true)
                 .order(by: "updatedAt", descending: true)
                 .limit(to: limit)
                 .dataSource(options: options)

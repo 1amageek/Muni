@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Toolbar
 
-class MessageViewController: Muni<User, Room, RoomConfig, Transcript>.MessagesViewController {
+class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController {
 
     var sendBarItem: ToolbarItem!
 

@@ -21,18 +21,13 @@ class ViewController: UIViewController {
         let room: Room = Room()
         room.members.insert(userID)
         room.members.insert(user.uid)
+        room.participants.append(userID)
+        room.participants.append(user.uid)
 
         do {
-            let config: RoomConfig = RoomConfig(id: userID)
-            config.name = user.uid
-            room.configs.insert(config)
             room.config[userID] = ["name": user.uid]
         }
-
         do {
-            let config: RoomConfig = RoomConfig(id: user.uid)
-            config.name = userID
-            room.configs.insert(config)
             room.config[user.uid] = ["name": userID]
         }
 

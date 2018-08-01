@@ -9,19 +9,34 @@
 import Pring
 import FirebaseFirestore
 
+/**
+ Define the properties that the `Room` object should have.
+ */
 public protocol RoomProtocol {
 
-    associatedtype Config: RoomConfigProtocol
+    /// It is the display name of the room.
     var name: String? { get set }
-    var profileImage: File? { get set }
+
+    /// It is the thumbnail image of the room.
+    var thumbnailImage: File? { get set }
+
+    // FIXME: Wait for Firebase SDK 5.5.0
+    // This property chage to Array
+    /// It is a member who can see the conversation.
     var members: Set<String> { get set }
+
+    /// The message most recently spoken is stored.
     var recentTranscript: [String: Any] { get set }
+
+    /// It keeps the settings for each user.
+    /// For example, in case of two people chatting, if you want to show each other's name and thumbnail, set here.
+    /// ```
+    /// let userConfig: [String: Any] = config[user.id]
+    /// let name: String = userConfig[MuniRoomNameKey]
+    /// ```
     var config: [String: Any] { get set }
-    var configs: NestedCollection<Config> { get set }
 }
 
-public protocol RoomConfigProtocol: Document {
-    var room: String? { get set }
-    var name: String? { get set }
-    var profileImage: File? { get set }
-}
+public let MuniRoomNameKey: String = "name"
+
+public let MuniRoomThumbnailImageKey: String = "thumbnailImage"

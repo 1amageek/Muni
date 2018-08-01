@@ -14,5 +14,5 @@ class User: Object, UserProtocol {
 
     var name: String?
 
-    var thumbnailURL: URL?
+    var thumbnailImageURL: URL?
 }

@@ -11,11 +11,10 @@ import Muni
 
 @objcMembers
 class Room: Object, RoomProtocol {
-    typealias Config = RoomConfig
     dynamic var name: String?
-    dynamic var profileImage: File?
+    dynamic var thumbnailImageURL: URL?
+    dynamic var participants: [String] = []
     dynamic var members: Set<String> = []
     dynamic var recentTranscript: [String: Any] = [:]
     dynamic var config: [String: Any] = [:]
-    dynamic var configs: NestedCollection<Config> = []
 }

@@ -9,7 +9,15 @@
 import Pring
 import FirebaseFirestore
 
+/**
+ Define the properties that the `User` object should have.
+ */
 public protocol UserProtocol {
+
+    /// The display name of the user. The display name is used by InboxViewController and MessagesViewController.
     var name: String? { get set }
-    var thumbnailURL: URL? { get set }
+
+    /// thumbnail image.
+    /// size 64x64@3x
+    var thumbnailImage: File? { get set }
 }
