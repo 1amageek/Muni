@@ -28,6 +28,7 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         guard let text: String = self.textView.text else { return false }
         if text.isEmpty { return false }
         transcript.text = text
+        self.textView.text = nil
         return true
     }
 

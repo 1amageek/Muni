@@ -10,6 +10,7 @@ import UIKit
 import Pring
 import FirebaseFirestore
 import Toolbar
+import PINRemoteImage
 
 extension Muni {
     /**
@@ -231,6 +232,9 @@ extension Muni {
                 let cell: MessageViewLeftCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewLeftCell", for: indexPath) as! MessageViewLeftCell
                 cell.textLabel.text = transcript.text
                 cell.dateLabel.text = self.dateFormatter.string(from: transcript.updatedAt)
+                if let user: UserType = transcript.from.object, let url: URL = user.thumbnailImage?.downloadURL {
+                    cell.thumbnailImageView.pin_setImage(from: url)
+                }
                 return cell
             }
         }

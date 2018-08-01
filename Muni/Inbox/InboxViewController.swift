@@ -8,6 +8,7 @@
 
 import UIKit
 import Pring
+import PINRemoteImage
 
 extension Muni {
     /**
@@ -89,10 +90,18 @@ extension Muni {
             if let name: String = room.name {
                 cell.nameLabel.text = name
             } else if let config: [String: Any] = room.config[self.userID] as? [String: Any] {
-                cell.nameLabel.text = config["name"] as? String
+                cell.nameLabel.text = config[MuniRoomConfigNameKey] as? String
             }
 
-            if let text: String = room.recentTranscript["text"] as? String {
+            if let thumbnailImage: File = room.thumbnailImage, let url: URL = thumbnailImage.downloadURL {
+                cell.thumbnailImageView.pin_setImage(from: url)
+            } else if let config: [String: Any] = room.config[self.userID] as? [String: Any] {
+                if let url: String = config[MuniRoomConfigThumbnailImageKey] as? String {
+                    cell.thumbnailImageView.pin_setImage(from: URL(string: url)!)
+                }
+            }
+
+            if let text: String = room.recentTranscript[MuniRoomRecentTranscriptTextKey] as? String {
                 cell.messageLabel?.text = text
             }
 

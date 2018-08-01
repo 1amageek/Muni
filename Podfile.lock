@@ -47,6 +47,7 @@ PODS:
   - FirebaseStorage (3.0.0):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FLAnimatedImage (1.0.12)
   - GoogleToolboxForMac/Defines (2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
@@ -73,12 +74,19 @@ PODS:
     - gRPC-RxLibrary (= 1.13.0)
   - GTMSessionFetcher/Core (1.2.0)
   - leveldb-library (1.20)
-  - MessageKit (1.0.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - PINCache (2.3)
+  - PINRemoteImage (2.1.4):
+    - PINRemoteImage/FLAnimatedImage (= 2.1.4)
+  - PINRemoteImage/Core (2.1.4):
+    - PINCache (>= 2.1)
+  - PINRemoteImage/FLAnimatedImage (2.1.4):
+    - FLAnimatedImage (>= 1.0)
+    - PINRemoteImage/Core
   - Pring (0.10.0):
     - Firebase/Core
     - Firebase/Firestore
@@ -88,7 +96,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Auth
-  - MessageKit
+  - PINRemoteImage
   - Pring
   - Toolbar
 
@@ -102,6 +110,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseStorage
+    - FLAnimatedImage
     - GoogleToolboxForMac
     - gRPC
     - gRPC-Core
@@ -109,8 +118,9 @@ SPEC REPOS:
     - gRPC-RxLibrary
     - GTMSessionFetcher
     - leveldb-library
-    - MessageKit
     - nanopb
+    - PINCache
+    - PINRemoteImage
     - Pring
     - Protobuf
     - Toolbar
@@ -124,6 +134,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: d4a3a7787624e612298a320da95935b8dc036c1d
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   gRPC: 81b990caa01d7c32605d300c2ffd1b5ba0ef9e49
   gRPC-Core: a56b086a8ef5ced6f6ba5be5bc0a63fca185015a
@@ -131,12 +142,13 @@ SPEC CHECKSUMS:
   gRPC-RxLibrary: fa6852f98d6ec0b73c0ec2f6406c26943099d501
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  MessageKit: 16160036b16476b04bd0e9f2c7ce67e662e503e4
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
+  PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
   Pring: 8cf87815e2ff248c8ab41a34434bff6046fab858
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   Toolbar: 36b60a587f7cce86f6633fc4a9e0a1c3f02f064a
 
-PODFILE CHECKSUM: 3284628d6d7a69c8228a5e0e8d152698a1da9679
+PODFILE CHECKSUM: 6ba3bf11b7971e7ad64b9720a751df3d42b03427
 
 COCOAPODS: 1.5.3

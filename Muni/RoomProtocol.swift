@@ -37,6 +37,8 @@ public protocol RoomProtocol {
     var config: [String: Any] { get set }
 }
 
-public let MuniRoomNameKey: String = "name"
+public let MuniRoomRecentTranscriptTextKey: String = "text"
 
-public let MuniRoomThumbnailImageKey: String = "thumbnailImage"
+public let MuniRoomConfigNameKey: String = "name"
+
+public let MuniRoomConfigThumbnailImageKey: String = "thumbnailImage"
