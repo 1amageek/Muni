@@ -85,3 +85,8 @@ class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
     }
 }
 ```
+
+### Build
+
+> Muni internally uses Firestore Query.
+> An error occurs if there is no Index in Firestore. You can create an Index by accessing the URL on the console.
