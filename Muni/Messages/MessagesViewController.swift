@@ -90,7 +90,7 @@ extension Muni {
 
         internal var keyboardOffsetFrame: CGRect {
             guard let inputFrame = inputAccessoryView?.frame else { return .zero }
-            return CGRect(origin: inputFrame.origin, size: CGSize(width: inputFrame.width, height: inputFrame.height - self.view.safeAreaInsets.bottom))
+            return CGRect(origin: inputFrame.origin, size: CGSize(width: inputFrame.width, height: inputFrame.height - self.collectionView.safeAreaBottomInset))
         }
 
         internal func addKeyboardObservers() {
@@ -267,7 +267,7 @@ extension Muni {
 
         @objc internal func keyboardWillChangeFrame(_ notification: Notification) {
             guard let keyboardEndFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
-            let newBottomInset: CGFloat = self.view.frame.height - keyboardEndFrame.minY - self.view.safeAreaInsets.bottom
+            let newBottomInset: CGFloat = self.view.frame.height - keyboardEndFrame.minY - self.collectionView.safeAreaBottomInset
             collectionViewBottomInset = newBottomInset
         }
 

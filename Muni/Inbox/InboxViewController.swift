@@ -110,8 +110,15 @@ extension Muni {
 
         open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let room: RoomType = self.dataSource[indexPath.item]
-            let viewController: MessagesViewController = MessagesViewController(roomID: room.id)
+            let viewController: MessagesViewController = messageViewController(with: room)
             self.navigationController?.pushViewController(viewController, animated: true)
+        }
+
+        /// Transit to the selected Room. Always override this function.
+        /// - parameter room: The selected Room is passed.
+        /// - returns: Returns the MessagesViewController to transition.
+        open func messageViewController(with room: RoomType) -> MessagesViewController {
+            return MessagesViewController(roomID: room.id)
         }
     }
 }
