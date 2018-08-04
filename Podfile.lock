@@ -57,7 +57,6 @@ PODS:
   - FirebaseStorage (3.0.0):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FLAnimatedImage (1.0.12)
   - GoogleAppMeasurement (5.1.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2.0)
     - GoogleUtilities/MethodSwizzler (~> 5.2.0)
@@ -107,14 +106,6 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - PINCache (2.3)
-  - PINRemoteImage (2.1.4):
-    - PINRemoteImage/FLAnimatedImage (= 2.1.4)
-  - PINRemoteImage/Core (2.1.4):
-    - PINCache (>= 2.1)
-  - PINRemoteImage/FLAnimatedImage (2.1.4):
-    - FLAnimatedImage (>= 1.0)
-    - PINRemoteImage/Core
   - Pring (0.11.1):
     - Firebase/Core
     - Firebase/Firestore
@@ -124,7 +115,6 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Auth
-  - PINRemoteImage
   - Pring
   - Toolbar
 
@@ -139,7 +129,6 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstanceID
     - FirebaseStorage
-    - FLAnimatedImage
     - GoogleAppMeasurement
     - GoogleUtilities
     - gRPC
@@ -149,8 +138,6 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
-    - PINCache
-    - PINRemoteImage
     - Pring
     - Protobuf
     - Toolbar
@@ -165,7 +152,6 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 0a6e4b9256ae39ed41258aa46213975c93908a74
   FirebaseInstanceID: 8cd2c6cfe7b9ab65ce7e248f6da7f26f6775b9be
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GoogleAppMeasurement: e785bdb86d3d280abc778156cec323a975f11d1d
   GoogleUtilities: 8d9fa00248c475b606fd20b562242060a20117a2
   gRPC: 9d4c549f37c7cef22478634bac7a0405b6e3dbfb
@@ -175,12 +161,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
-  PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
   Pring: 4a92aa1f52eaef9b05dd2b20c739a1556ba2f8ca
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   Toolbar: 4932955860e5fa58bac16a79980e25a7d5ff3047
 
-PODFILE CHECKSUM: 6ba3bf11b7971e7ad64b9720a751df3d42b03427
+PODFILE CHECKSUM: 623717ac2ca27fdaebf05ffa8bbdd6c08758d560
 
 COCOAPODS: 1.5.3

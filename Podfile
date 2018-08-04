@@ -6,7 +6,6 @@ target 'Muni' do
 
   pod 'Pring'
   pod 'Toolbar'
-  pod 'PINRemoteImage'
 
   target 'MuniTests' do
     inherit! :search_paths
@@ -20,7 +19,6 @@ target 'Sample' do
 
   pod 'Firebase/Auth'
   pod 'Pring'
-  pod 'PINRemoteImage'
   pod 'Toolbar'
 
 end
