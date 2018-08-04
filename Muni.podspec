@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Muni"
-  s.version      = "0.2.1"
+  s.version      = "0.3.0"
   s.summary      = "Firestore message framework"
   s.description  = <<-DESC
 Muni is a chat framework made with Firestore.
@@ -17,12 +17,12 @@ Muni is a chat framework made with Firestore.
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/1amageek/Muni.git", :tag => "#{s.version}" }
-  s.source_files  = "Muni/**/*.swift"
+  s.source_files = "Muni/**/*.{swift}"
+  s.resources = "Muni/**/*.{xib}"
   s.requires_arc = true
   s.static_framework = true
   s.dependency "Pring"
   s.dependency "Toolbar"
-  s.dependency "PINRemoteImage"
   s.dependency "Firebase/Core"
   s.dependency "Firebase/Firestore"
   s.dependency "Firebase/Storage"

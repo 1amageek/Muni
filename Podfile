@@ -18,7 +18,6 @@ target 'Sample' do
   use_frameworks!
 
   pod 'Firebase/Auth'
-  pod 'Pring'
-  pod 'Toolbar'
+  pod 'Muni', :path => './'
 
 end

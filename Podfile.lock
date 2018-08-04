@@ -101,6 +101,12 @@ PODS:
     - gRPC-RxLibrary (= 1.14.0)
   - GTMSessionFetcher/Core (1.2.0)
   - leveldb-library (1.20)
+  - Muni (0.2.3):
+    - Firebase/Core
+    - Firebase/Firestore
+    - Firebase/Storage
+    - Pring
+    - Toolbar
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -115,6 +121,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Auth
+  - Muni (from `./`)
   - Pring
   - Toolbar
 
@@ -142,6 +149,10 @@ SPEC REPOS:
     - Protobuf
     - Toolbar
 
+EXTERNAL SOURCES:
+  Muni:
+    :path: "./"
+
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   Firebase: 8c957f9cb3852b519180fb378801b7eeeba4d288
@@ -160,11 +171,12 @@ SPEC CHECKSUMS:
   gRPC-RxLibrary: 3c305f32155024b116b780f389323c73a28197e6
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  Muni: 3925183ba27d473d13539b672c6b946258d6aa86
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Pring: 4a92aa1f52eaef9b05dd2b20c739a1556ba2f8ca
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   Toolbar: 4932955860e5fa58bac16a79980e25a7d5ff3047
 
-PODFILE CHECKSUM: 623717ac2ca27fdaebf05ffa8bbdd6c08758d560
+PODFILE CHECKSUM: 62aed122de211c7764982084bd84b4410327de10
 
 COCOAPODS: 1.5.3

@@ -7,6 +7,7 @@
 //
 
 import Pring
+import Muni
 
 @objcMembers
 class User: Object, UserProtocol {

@@ -101,7 +101,7 @@ extension Muni {
 
         // MARK: -
 
-        init(roomID: String, fetching limit: Int = 20) {
+        public init(roomID: String, fetching limit: Int = 20) {
             self.limit = limit
             self.room = RoomType(id: roomID, value: [:])
             let options: Options = Options()

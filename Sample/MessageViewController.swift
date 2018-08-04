@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Toolbar
+import Muni
 
 class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController {
 
