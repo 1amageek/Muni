@@ -8,6 +8,7 @@
 
 import Pring
 import FirebaseFirestore
+import FirebaseStorage
 
 /**
  Muni is the core class of chat function.
@@ -20,4 +21,14 @@ public class Muni<
     RoomType: RoomProtocol & Object,
     TranscriptType: TranscriptProtocol & Object
     >: NSObject where UserType == TranscriptType.UserType, RoomType == TranscriptType.RoomType
-{ }
+{
+
+    public class func createRoom(userIDs: [String], name: String? = nil, thumanailImage: File? = nil, confg: [String: Any] = [:], block: ((DocumentReference?, Error?) -> Void)? = nil) -> [String: StorageUploadTask] {
+        let room: Room = Room()
+        room.members = userIDs
+        room.name = name
+        room.config = confg
+        room.thumbnailImage = thumanailImage
+        return room.save(block)
+    }
+}

@@ -19,18 +19,9 @@ class ViewController: UIViewController {
         guard let userID: String = textField.text else { return }
 
         let room: Room = Room()
-        room.members.insert(userID)
-        room.members.insert(user.uid)
-        room.participants.append(userID)
-        room.participants.append(user.uid)
-
-        do {
-            room.config[userID] = ["name": user.uid]
-        }
-        do {
-            room.config[user.uid] = ["name": userID]
-        }
-
+        room.members = [userID, user.uid]
+        room.config[userID] = ["name": user.uid]
+        room.config[user.uid] = ["name": userID]
         room.save { [weak self] (_, _) in
             self?.navigationController?.popViewController(animated: true)
         }

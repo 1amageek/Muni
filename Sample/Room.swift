@@ -12,8 +12,7 @@ import Pring
 class Room: Object, RoomProtocol {
     dynamic var name: String?
     dynamic var thumbnailImage: File?
-    dynamic var participants: [String] = []
-    dynamic var members: Set<String> = []
+    dynamic var members: [String] = []
     dynamic var recentTranscript: [String: Any] = [:]
     dynamic var config: [String: Any] = [:]
 }

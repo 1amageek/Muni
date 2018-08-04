@@ -20,10 +20,8 @@ public protocol RoomProtocol {
     /// It is the thumbnail image of the room.
     var thumbnailImage: File? { get set }
 
-    // FIXME: Wait for Firebase SDK 5.5.0
-    // This property chage to Array
     /// It is a member who can see the conversation.
-    var members: Set<String> { get set }
+    var members: [String] { get set }
 
     /// The message most recently spoken is stored.
     var recentTranscript: [String: Any] { get set }

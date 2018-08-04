@@ -31,5 +31,4 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         self.textView.text = nil
         return true
     }
-
 }

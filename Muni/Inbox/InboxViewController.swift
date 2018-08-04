@@ -40,8 +40,7 @@ extension Muni {
             let options: Options = Options()
             options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
             self.dataSource = RoomType
-                // FIXME: Firebase SDK 5.5.0
-                .where("members.\(userID)", isEqualTo: true)
+                .where("members", arrayContains: userID)
                 .order(by: "updatedAt", descending: true)
                 .limit(to: limit)
                 .dataSource(options: options)

@@ -34,14 +34,13 @@ extension Muni {
         public private(set) var collectionView: MessagesView!
 
         /// Returns the textView of inputAccessoryView.
-        open lazy var textView: UITextView = {
+        open var textView: UITextView = {
             let textView: UITextView = UITextView(frame: .zero)
             textView.font = UIFont.systemFont(ofSize: 15)
             textView.layer.cornerRadius = 12
             textView.layer.borderColor = UIColor.lightGray.cgColor
             textView.layer.borderWidth = 1 / UIScreen.main.scale
             textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-            textView.delegate = self
             return textView
         }()
 
@@ -61,7 +60,7 @@ extension Muni {
         }
 
         open override var inputAccessoryView: UIView? {
-            return toolBar
+            return self.toolBar
         }
 
         open override var shouldAutorotate: Bool {
@@ -121,6 +120,7 @@ extension Muni {
 
         open override func loadView() {
             super.loadView()
+            self.textView.delegate = self
             let collectionViewLayout: MessagesViewFlowLayout = MessagesViewFlowLayout()
             self.collectionView = MessagesView(frame: self.view.bounds, collectionViewLayout: collectionViewLayout)
             self.collectionView.backgroundColor = .white

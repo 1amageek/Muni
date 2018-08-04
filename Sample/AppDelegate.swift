@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
+//        _ = try! Auth.auth().signOut()
+
         guard let user: FirebaseAuth.User = Auth.auth().currentUser else {
             Auth.auth().signInAnonymously { [weak self] (result, error) in
                 if let error = error {
