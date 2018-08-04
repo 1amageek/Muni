@@ -1,6 +1,8 @@
 # Muni
 Chat made with Cloud Firestore
 
+<img src="https://github.com/1amageek/Muni/blob/master/sample.gif" width="500">
+
 # Installation
 
 `pod 'Muni'` add to your Podfile
