@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class MessagesView: UICollectionView {
+open class MessagesView: UICollectionView {
 
     internal var safeAreaBottomInset: CGFloat {
         if #available(iOS 11.0, *) {
@@ -18,7 +18,7 @@ public class MessagesView: UICollectionView {
         }
     }
 
-    public func scrollToBottom(animated: Bool = false) {
+    open func scrollToBottom(animated: Bool = false) {
         let collectionViewContentHeight: CGFloat = collectionViewLayout.collectionViewContentSize.height
         let visibleRectHeight: CGFloat = (self.bounds.height - self.contentInset.top - self.contentInset.bottom - safeAreaBottomInset)
         if collectionViewContentHeight > visibleRectHeight {

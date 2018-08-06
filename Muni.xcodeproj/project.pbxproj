@@ -39,6 +39,8 @@
 		128180E42110620900F1E20D /* InboxViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 128180E32110620900F1E20D /* InboxViewCell.xib */; };
 		128180E72110648600F1E20D /* BoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180E62110648600F1E20D /* BoxViewController.swift */; };
 		128180E9211069BC00F1E20D /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122988D4210AE10D00068424 /* InboxViewController.swift */; };
+		129585EA2117D600001F00FA /* MessagesTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129585E92117D600001F00FA /* MessagesTitleView.xib */; };
+		129585EC2117D6FE001F00FA /* MessagesTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129585EB2117D6FE001F00FA /* MessagesTitleView.swift */; };
 		3DC4CB539A669C0291F96886 /* Pods_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F0617ACEEBD1F60A61BBC9 /* Pods_Sample.framework */; };
 		60122F0D8444088278F61305 /* Pods_Muni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72CE47424A6AC79780BE3E28 /* Pods_Muni.framework */; };
 		66C834A0949E338496488DEE /* Pods_MuniTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80549811863E0642A4087001 /* Pods_MuniTests.framework */; };
@@ -97,7 +99,7 @@
 		12298917210B022400068424 /* ViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewController.storyboard; sourceTree = "<group>"; };
 		1229891D210B146D00068424 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		123A551B210C377F0084A3E9 /* MessagesViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewFlowLayout.swift; sourceTree = "<group>"; };
-		124A08422112132100C235CA /* Muni.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Muni.podspec; sourceTree = "<group>"; };
+		124A08422112132100C235CA /* Muni.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Muni.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		128180CA2110441E00F1E20D /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
 		128180CC2110443000F1E20D /* RoomProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomProtocol.swift; sourceTree = "<group>"; };
 		128180CE2110444400F1E20D /* TranscriptProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptProtocol.swift; sourceTree = "<group>"; };
@@ -106,6 +108,8 @@
 		128180E1211061E300F1E20D /* InboxViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewCell.swift; sourceTree = "<group>"; };
 		128180E32110620900F1E20D /* InboxViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InboxViewCell.xib; sourceTree = "<group>"; };
 		128180E62110648600F1E20D /* BoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxViewController.swift; sourceTree = "<group>"; };
+		129585E92117D600001F00FA /* MessagesTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesTitleView.xib; sourceTree = "<group>"; };
+		129585EB2117D6FE001F00FA /* MessagesTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTitleView.swift; sourceTree = "<group>"; };
 		12EEB61C210B322B0023CC04 /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
 		12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewLeftCell.xib; sourceTree = "<group>"; };
 		12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewRightCell.xib; sourceTree = "<group>"; };
@@ -259,6 +263,8 @@
 				128180D321104E4100F1E20D /* MessagesViewController.swift */,
 				123A551B210C377F0084A3E9 /* MessagesViewFlowLayout.swift */,
 				1229891D210B146D00068424 /* MessagesView.swift */,
+				129585E92117D600001F00FA /* MessagesTitleView.xib */,
+				129585EB2117D6FE001F00FA /* MessagesTitleView.swift */,
 				12EEB61C210B322B0023CC04 /* MessageViewCell.swift */,
 				12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */,
 				12EEB622210B410B0023CC04 /* MessageViewLeftCell.swift */,
@@ -475,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				128180E42110620900F1E20D /* InboxViewCell.xib in Resources */,
+				129585EA2117D600001F00FA /* MessagesTitleView.xib in Resources */,
 				124A08432112132100C235CA /* Muni.podspec in Resources */,
 				128180DC2110568000F1E20D /* MessageViewLeftCell.xib in Resources */,
 				128180DE2110568000F1E20D /* MessageViewRightCell.xib in Resources */,
@@ -654,12 +661,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Sample/Pods-Sample-resources.sh",
 				"${PODS_ROOT}/../Muni/Inbox/InboxViewCell.xib",
+				"${PODS_ROOT}/../Muni/Messages/MessagesTitleView.xib",
 				"${PODS_ROOT}/../Muni/Messages/MessageViewLeftCell.xib",
 				"${PODS_ROOT}/../Muni/Messages/MessageViewRightCell.xib",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InboxViewCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MessagesTitleView.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MessageViewLeftCell.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MessageViewRightCell.nib",
 			);
@@ -685,6 +694,7 @@
 				128180E9211069BC00F1E20D /* InboxViewController.swift in Sources */,
 				128180D621104F9300F1E20D /* MessagesView.swift in Sources */,
 				12298913210AFFA500068424 /* MuniProtocol.swift in Sources */,
+				129585EC2117D6FE001F00FA /* MessagesTitleView.swift in Sources */,
 				128180CF2110444400F1E20D /* TranscriptProtocol.swift in Sources */,
 				128180DF2110568000F1E20D /* MessageViewRightCell.swift in Sources */,
 			);

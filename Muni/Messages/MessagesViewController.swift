@@ -43,6 +43,11 @@ extension Muni {
             return textView
         }()
 
+        open var titleView: UIView? = {
+            let titleView: MessagesTitleView = UINib(nibName: "MessagesTitleView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MessagesTitleView
+            return titleView
+        }()
+
         /// Always override this property.
         open var senderID: String? {
             return nil
@@ -137,6 +142,7 @@ extension Muni {
 
         open override func viewDidLoad() {
             super.viewDidLoad()
+            self.navigationItem.titleView = self.titleView
             self.dataSource
                 .on(parse: { (_, transcript, done) in
                     transcript.from.get({ (user, error) in
@@ -166,6 +172,7 @@ extension Muni {
 
         open override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
+            self.markAsRead()
             addKeyboardObservers()
         }
 
@@ -176,6 +183,15 @@ extension Muni {
 
         open override func viewDidLayoutSubviews() {
             self.collectionViewBottomInset = keyboardOffsetFrame.height
+        }
+
+        open func markAsRead() {
+            guard let senderID: String = self.senderID else {
+                fatalError("[Muni] error: You need to override senderID.")
+            }
+            var room: RoomType = self.room
+            room.viewers.append(senderID)
+            room.update()
         }
 
         /// Call this method to send the message.
@@ -192,6 +208,7 @@ extension Muni {
             if !self.transcript(willSend: transcript) {
                 return
             }
+            room.viewers = []
             room.recentTranscript = transcript.value as! [String : Any]
             let batch: WriteBatch = Firestore.firestore().batch()
             transcript.save(batch) { [weak self] (ref, error) in

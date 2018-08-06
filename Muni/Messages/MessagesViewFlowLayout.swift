@@ -8,6 +8,6 @@
 
 import UIKit
 
-class MessagesViewFlowLayout: UICollectionViewFlowLayout {
+open class MessagesViewFlowLayout: UICollectionViewFlowLayout {
 
 }

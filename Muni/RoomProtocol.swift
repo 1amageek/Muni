@@ -23,6 +23,9 @@ public protocol RoomProtocol {
     /// It is a member who can see the conversation.
     var members: [String] { get set }
 
+    /// Holds the ID of the viewer of the most recent message.
+    var viewers: [String] { get set }
+
     /// The message most recently spoken is stored.
     var recentTranscript: [String: Any] { get set }
 
@@ -30,7 +33,7 @@ public protocol RoomProtocol {
     /// For example, in case of two people chatting, if you want to show each other's name and thumbnail, set here.
     /// ```
     /// let userConfig: [String: Any] = config[user.id]
-    /// let name: String = userConfig[MuniRoomNameKey]
+    /// let name: String = userConfig[MuniRoomConfigNameKey]
     /// ```
     var config: [String: Any] { get set }
 }

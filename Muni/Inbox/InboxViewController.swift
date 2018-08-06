@@ -40,10 +40,12 @@ extension Muni {
             options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
             self.dataSource = RoomType
                 .where("members", arrayContains: userID)
-                .order(by: "updatedAt", descending: true)
+                // FIXME: Index is not valid
+//                .order(by: "updatedAt", descending: true)
                 .limit(to: limit)
                 .dataSource(options: options)
             super.init(nibName: nil, bundle: nil)
+            self.title = "Message"
         }
 
         public required init?(coder aDecoder: NSCoder) {

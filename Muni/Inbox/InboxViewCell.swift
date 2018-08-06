@@ -8,14 +8,14 @@
 
 import UIKit
 
-class InboxViewCell: UITableViewCell {
+open class InboxViewCell: UITableViewCell {
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
 
-    override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         self.thumbnailImageView.layer.cornerRadius = 32
         self.nameLabel.text = nil
@@ -23,7 +23,7 @@ class InboxViewCell: UITableViewCell {
         self.dateLabel.text = nil
     }
 
-    override func prepareForReuse() {
+   open override func prepareForReuse() {
         super.prepareForReuse()
         self.thumbnailImageView.image = nil
         self.nameLabel.text = nil

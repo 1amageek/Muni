@@ -8,16 +8,16 @@
 
 import UIKit
 
-class MessageViewCell: UICollectionViewCell {
+open class MessageViewCell: UICollectionViewCell {
 
-    var cacheSize: CGSize?
+    open private(set) var cacheSize: CGSize?
 
-    override func prepareForReuse() {
+    open override func prepareForReuse() {
         super.prepareForReuse()
         self.cacheSize = nil
     }
 
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
         if let size: CGSize = self.cacheSize {
             return size
         }
