@@ -33,6 +33,18 @@ extension Muni {
             return dateFormatter
         }()
 
+        public var isLoading: Bool = false {
+            didSet {
+                if isLoading != oldValue, isLoading {
+                    self.dataSource.next()
+                }
+            }
+        }
+
+        // MARK: -
+
+        internal var isFirstFetching: Bool = true
+
         public init(userID: String, fetching limit: Int = 20) {
             self.userID = userID
             self.limit = limit
@@ -117,6 +129,34 @@ extension Muni {
         /// - returns: Returns the MessagesViewController to transition.
         open func messageViewController(with room: RoomType) -> MessagesViewController {
             return MessagesViewController(roomID: room.id)
+        }
+
+        // MARK: -
+
+        private var threshold: CGFloat {
+            if #available(iOS 11.0, *) {
+                return -self.view.safeAreaInsets.top
+            } else {
+                return -self.view.layoutMargins.top
+            }
+        }
+
+        private var canLoadNextToDataSource: Bool = true
+
+        open override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            if isFirstFetching {
+                self.isFirstFetching = false
+                return
+            }
+            if canLoadNextToDataSource && scrollView.contentOffset.y < threshold && !scrollView.isDecelerating {
+                if !self.dataSource.isLast && self.limit <= self.dataSource.count {
+                    self.isLoading = true
+                    self.canLoadNextToDataSource = false
+                }
+            }
+            if !canLoadNextToDataSource && !scrollView.isTracking && scrollView.contentOffset.y <= threshold {
+                self.canLoadNextToDataSource = true
+            }
         }
     }
 }

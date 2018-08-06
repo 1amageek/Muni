@@ -56,7 +56,7 @@ extension Muni {
             return titleView
         }()
 
-        open var isLoading: Bool = false {
+        public var isLoading: Bool = false {
             didSet {
                 if isLoading != oldValue, isLoading {
                     self.dataSource.next()
@@ -133,6 +133,7 @@ extension Muni {
             self.limit = limit
             self.room = room
             let options: Options = Options()
+            options.listeningChangeTypes = [.added, .modified]
             options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: true)]
             self.dataSource = TranscriptType.where("to", isEqualTo: room.id)
                 .order(by: "updatedAt", descending: true)
