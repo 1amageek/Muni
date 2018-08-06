@@ -112,8 +112,8 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Pring (0.11.1):
-    - Firebase/Core
+  - Pring (0.11.2):
+    - Firebase/Core (~> 5.5.0)
     - Firebase/Firestore
     - Firebase/Storage
   - Protobuf (3.6.0)
@@ -173,7 +173,7 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   Muni: f865e9b3411f23c9e49855b9f629d8fef558c25b
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Pring: 4a92aa1f52eaef9b05dd2b20c739a1556ba2f8ca
+  Pring: b1fedd3e885c0d7ca8c054e60a14e912ee280a84
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   Toolbar: 4932955860e5fa58bac16a79980e25a7d5ff3047
 

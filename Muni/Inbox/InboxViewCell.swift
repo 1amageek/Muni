@@ -9,6 +9,25 @@
 import UIKit
 
 open class InboxViewCell: UITableViewCell {
+
+    public enum Format {
+        case normal
+        case bold
+    }
+
+    open var format: Format = .normal {
+        didSet {
+            switch format {
+            case .normal:
+                self.messageLabel.font = UIFont.systemFont(ofSize: 14)
+                self.messageLabel.textColor = UIColor.darkGray
+            case .bold:
+                self.messageLabel.font = UIFont.systemFont(ofSize: 14, weight: .heavy)
+                self.messageLabel.textColor = UIColor.darkText
+            }
+            self.setNeedsLayout()
+        }
+    }
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -29,5 +48,6 @@ open class InboxViewCell: UITableViewCell {
         self.nameLabel.text = nil
         self.messageLabel.text = nil
         self.dateLabel.text = nil
+        self.format = .normal
     }
 }

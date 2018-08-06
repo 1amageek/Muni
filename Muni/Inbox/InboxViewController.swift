@@ -97,6 +97,12 @@ extension Muni {
                 cell.messageLabel?.text = text
             }
 
+            if room.viewers.contains(self.userID) {
+                cell.format = .normal
+            } else {
+                cell.format = .bold
+            }
+
             return cell
         }
 

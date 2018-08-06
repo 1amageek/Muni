@@ -13,6 +13,7 @@ import Muni
 class Room: Object, RoomProtocol {
     dynamic var name: String?
     dynamic var thumbnailImage: File?
+    dynamic var viewers: [String] = []
     dynamic var members: [String] = []
     dynamic var recentTranscript: [String: Any] = [:]
     dynamic var config: [String: Any] = [:]

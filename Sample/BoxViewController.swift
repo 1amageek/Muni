@@ -30,6 +30,6 @@ class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
     }
 
     override func messageViewController(with room: Room) -> Muni<User, Room, Transcript>.MessagesViewController {
-        return MessageViewController(roomID: room.id)
+        return MessageViewController(room: room, fetching: 4)
     }
 }

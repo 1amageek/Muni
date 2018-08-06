@@ -18,7 +18,7 @@ import FirebaseStorage
  */
 public class Muni<
     UserType: UserProtocol,
-    RoomType: RoomProtocol & Object,
+    RoomType: RoomProtocol,
     TranscriptType: TranscriptProtocol & Object
     >: NSObject where UserType == TranscriptType.UserType, RoomType == TranscriptType.RoomType
 { }

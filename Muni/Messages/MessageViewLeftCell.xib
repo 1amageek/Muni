@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -56,6 +55,7 @@
             </view>
             <constraints>
                 <constraint firstItem="agN-lG-weS" firstAttribute="top" secondItem="NmB-8L-Z2A" secondAttribute="top" id="1hH-f8-OSR"/>
+                <constraint firstItem="b4O-Fk-zva" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NmB-8L-Z2A" secondAttribute="top" constant="8" id="4rM-PE-aVc"/>
                 <constraint firstAttribute="bottom" secondItem="b4O-Fk-zva" secondAttribute="bottom" id="4s5-Jn-gxB"/>
                 <constraint firstItem="agN-lG-weS" firstAttribute="leading" secondItem="b4O-Fk-zva" secondAttribute="trailing" constant="8" id="66i-sp-vYj"/>
                 <constraint firstItem="b4O-Fk-zva" firstAttribute="leading" secondItem="NmB-8L-Z2A" secondAttribute="leading" constant="8" id="9wj-lm-eBy"/>

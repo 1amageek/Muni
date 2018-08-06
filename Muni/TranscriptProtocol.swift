@@ -15,10 +15,10 @@ import FirebaseFirestore
 public protocol TranscriptProtocol {
 
     /// User Type
-    associatedtype UserType: Document
+    associatedtype UserType: Object
     
     /// Room type
-    associatedtype RoomType: Document
+    associatedtype RoomType: Object
 
     /// Set the room's ID.
     var to: Relation<RoomType> { get set }
