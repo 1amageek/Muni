@@ -222,9 +222,11 @@ extension Muni {
             }
 
             var viewers: [String] = self.room.viewers
-            viewers.append(senderID)
-            self.room.updateValue["viewers"] = viewers
-            self.room.update()
+            if !viewers.contains(senderID) {
+                viewers.append(senderID)
+                self.room.updateValue["viewers"] = viewers
+                self.room.update()
+            }
         }
 
         /// Call this method to send the message.
