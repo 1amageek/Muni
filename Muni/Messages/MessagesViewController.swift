@@ -198,7 +198,11 @@ extension Muni {
                 }).onCompleted { [weak self] (_, _) in
                     self?.isLoading = false
                 }
-                .listen()
+        }
+
+        /// Start listening
+        public func listen() {
+            self.dataSource.listen()
         }
 
         open override func viewDidAppear(_ animated: Bool) {

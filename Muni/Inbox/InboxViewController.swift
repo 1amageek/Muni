@@ -94,7 +94,12 @@ extension Muni {
                     case .error(let error):
                         print(error)
                     }
-                }).listen()
+                })
+        }
+
+        /// Start listening
+        public func listen() {
+            self.dataSource.listen()
         }
 
         // MARK: -
