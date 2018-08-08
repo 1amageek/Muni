@@ -33,6 +33,11 @@ extension Muni {
             return dateFormatter
         }()
 
+        /// Returns a Section that reflects the update of the data source.
+        open var targetSection: Int {
+            return 0
+        }
+
         public var isLoading: Bool = false {
             didSet {
                 if isLoading != oldValue, isLoading {
@@ -75,15 +80,16 @@ extension Muni {
                 .on({ [weak self] (snapshot, changes) in
                     guard let tableView: UITableView = self?.tableView else { return }
                     guard let dataSource: DataSource<RoomType> = self?.dataSource else { return }
+                    guard let section: Int = self?.targetSection else { return }
                     switch changes {
                     case .initial:
                         tableView.reloadData()
                         self?.didInitialize(of: dataSource)
                     case .update(let deletions, let insertions, let modifications):
                         tableView.beginUpdates()
-                        tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: section) }, with: .automatic)
+                        tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: section) }, with: .automatic)
+                        tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: section) }, with: .automatic)
                         tableView.endUpdates()
                     case .error(let error):
                         print(error)
