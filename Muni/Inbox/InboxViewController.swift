@@ -74,9 +74,11 @@ extension Muni {
             self.dataSource
                 .on({ [weak self] (snapshot, changes) in
                     guard let tableView: UITableView = self?.tableView else { return }
+                    guard let dataSource: DataSource<RoomType> = self?.dataSource else { return }
                     switch changes {
                     case .initial:
                         tableView.reloadData()
+                        self?.didInitialize(of: dataSource)
                     case .update(let deletions, let insertions, let modifications):
                         tableView.beginUpdates()
                         tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
@@ -88,6 +90,15 @@ extension Muni {
                     }
                 }).listen()
         }
+
+        // MARK: -
+
+        /// It is called after the first fetch of the data source is finished.
+        open func didInitialize(of dataSource: DataSource<RoomType>) {
+
+        }
+
+        // MARK: -
 
         open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return self.dataSource.count
