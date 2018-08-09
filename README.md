@@ -67,6 +67,9 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         super.viewDidLoad()
         self.sendBarItem = ToolbarItem(title: "Send", target: self, action: #selector(send))
         self.toolBar.setItems([ToolbarItem(customView: self.textView), self.sendBarItem], animated: false)
+        
+        // Start
+        self.listen()
     }
 
     override func transcript(willSend transcript: Transcript) -> Bool {
@@ -81,6 +84,13 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
 
 ```swift
 class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Start
+        self.listen()
+    }
 
     override func messageViewController(with room: Room) -> Muni<User, Room, Transcript>.MessagesViewController {
         return MessageViewController(roomID: room.id)
