@@ -14,6 +14,8 @@ import FirebaseFirestore
  */
 public protocol RoomProtocol {
 
+    associatedtype TranscriptType: Object
+
     /// It is the display name of the room.
     var name: String? { get set }
 
@@ -28,6 +30,8 @@ public protocol RoomProtocol {
 
     /// The message most recently spoken is stored.
     var recentTranscript: [String: Any] { get set }
+
+    var transcripts: NestedCollection<TranscriptType> { get set }
 
     /// It keeps the settings for each user.
     /// For example, in case of two people chatting, if you want to show each other's name and thumbnail, set here.

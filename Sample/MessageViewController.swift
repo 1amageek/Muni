@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import Toolbar
 import Muni
 
@@ -23,6 +24,7 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         super.viewDidLoad()
         self.sendBarItem = ToolbarItem(title: "Send", target: self, action: #selector(send))
         self.toolBar.setItems([ToolbarItem(customView: self.textView), self.sendBarItem], animated: false)
+        self.listen()
     }
 
     override func transcript(willSend transcript: Transcript) -> Bool {
@@ -31,5 +33,9 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         transcript.text = text
         self.textView.text = nil
         return true
+    }
+
+    override func transcript(didSend transcript: Transcript, reference: DocumentReference?, error: Error?) {
+        print(reference?.path)
     }
 }

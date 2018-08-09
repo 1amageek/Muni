@@ -20,6 +20,7 @@ class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.listen()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Room", style: .done, target: self, action: #selector(addRoom))
     }
 

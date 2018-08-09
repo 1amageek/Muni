@@ -135,7 +135,7 @@ extension Muni {
             let options: Options = Options()
             options.listeningChangeTypes = [.added, .modified]
             options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: true)]
-            self.dataSource = TranscriptType.where("to", isEqualTo: room.id)
+            self.dataSource = room.transcripts
                 .order(by: "updatedAt", descending: true)
                 .limit(to: limit)
                 .dataSource(options: options)
@@ -249,10 +249,14 @@ extension Muni {
             }
             room.viewers = [senderID]
             room.recentTranscript = transcript.value as! [String : Any]
-            let batch: WriteBatch = Firestore.firestore().batch()
-            transcript.save(batch) { [weak self] (ref, error) in
-                self?.transcript(didSend: transcript, reference: ref, error: error)
+            room.transcripts.insert(transcript)
+            room.update { [weak self] (error) in
+                self?.transcript(didSend: transcript, reference: transcript.reference, error: error)
             }
+//            let batch: WriteBatch = Firestore.firestore().batch()
+//            transcript.save(batch) { [weak self] (ref, error) in
+//
+//            }
         }
 
         /// Set contents in Transcript.

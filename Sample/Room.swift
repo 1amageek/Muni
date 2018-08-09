@@ -11,10 +11,14 @@ import Muni
 
 @objcMembers
 class Room: Object, RoomProtocol {
+
+    typealias TranscriptType = Transcript
+
     dynamic var name: String?
     dynamic var thumbnailImage: File?
     dynamic var viewers: [String] = []
     dynamic var members: [String] = []
     dynamic var recentTranscript: [String: Any] = [:]
+    dynamic var transcripts: NestedCollection<TranscriptType> = []
     dynamic var config: [String: Any] = [:]
 }

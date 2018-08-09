@@ -20,5 +20,5 @@ public class Muni<
     UserType: UserProtocol,
     RoomType: RoomProtocol,
     TranscriptType: TranscriptProtocol & Object
-    >: NSObject where UserType == TranscriptType.UserType, RoomType == TranscriptType.RoomType
+    >: NSObject where UserType == TranscriptType.UserType, RoomType == TranscriptType.RoomType, RoomType.TranscriptType == TranscriptType
 { }
