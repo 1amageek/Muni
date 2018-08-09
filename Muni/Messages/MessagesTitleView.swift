@@ -8,12 +8,12 @@
 
 import UIKit
 
-class MessagesTitleView: UIView {
+open class MessagesTitleView: UIView {
 
-    @IBOutlet weak var thumbnailImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet public weak var thumbnailImageView: UIImageView!
+    @IBOutlet public weak var nameLabel: UILabel!
 
-    override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         self.thumbnailImageView.layer.cornerRadius = 16
         self.thumbnailImageView.image = nil

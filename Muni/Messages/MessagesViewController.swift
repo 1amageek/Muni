@@ -43,7 +43,7 @@ extension Muni {
             return textView
         }()
 
-        open lazy var titleView: UIView? = {
+        open lazy var titleView: MessagesTitleView? = {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
