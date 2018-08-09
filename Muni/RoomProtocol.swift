@@ -31,6 +31,7 @@ public protocol RoomProtocol {
     /// The message most recently spoken is stored.
     var recentTranscript: [String: Any] { get set }
 
+    /// Return the conversation in this room.
     var transcripts: NestedCollection<TranscriptType> { get set }
 
     /// It keeps the settings for each user.
