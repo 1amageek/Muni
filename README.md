@@ -1,5 +1,5 @@
 # Muni
-Chat made with Cloud Firestore
+Chat framework
 
 <img src="https://github.com/1amageek/Muni/blob/master/sample.gif" width="500">
 
