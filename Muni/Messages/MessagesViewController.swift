@@ -32,6 +32,11 @@ extension Muni {
         /// Returns a CollectionView that displays a message.
         public private(set) var collectionView: MessagesView!
 
+        /// Returns a Section that reflects the update of the data source.
+        open var targetSection: Int {
+            return 0
+        }
+
         /// Returns the textView of inputAccessoryView.
         open var textView: UITextView = {
             let textView: UITextView = UITextView(frame: .zero)
@@ -177,17 +182,20 @@ extension Muni {
                 })
                 .on({ [weak self] (snapshot, changes) in
                     guard let collectionView: MessagesView = self?.collectionView else { return }
+                    guard let dataSource: DataSource<TranscriptType> = self?.dataSource else { return }
+                    guard let section: Int = self?.targetSection else { return }
                     switch changes {
                     case .initial:
                         collectionView.reloadData()
                         collectionView.setNeedsLayout()
                         collectionView.layoutIfNeeded()
                         collectionView.scrollToBottom()
+                        self?.didInitialize(of: dataSource)
                     case .update(let deletions, let insertions, let modifications):
                         collectionView.performBatchUpdates({
-                            collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
-                            collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
-                            collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+                            collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: section) })
+                            collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: section) })
+                            collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: section) })
                             if snapshot?.metadata.hasPendingWrites ?? false {
                                 collectionView.scrollToBottom(animated: true)
                             }
@@ -233,6 +241,11 @@ extension Muni {
             }
         }
 
+        /// It is called after the first fetch of the data source is finished.
+        open func didInitialize(of dataSource: DataSource<TranscriptType>) {
+            // override
+        }
+
         /// Call this method to send the message.
         @objc
         public func send() {
@@ -253,10 +266,6 @@ extension Muni {
             room.update { [weak self] (error) in
                 self?.transcript(didSend: transcript, reference: transcript.reference, error: error)
             }
-//            let batch: WriteBatch = Firestore.firestore().batch()
-//            transcript.save(batch) { [weak self] (ref, error) in
-//
-//            }
         }
 
         /// Set contents in Transcript.

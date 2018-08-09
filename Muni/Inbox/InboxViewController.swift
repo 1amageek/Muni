@@ -106,7 +106,7 @@ extension Muni {
 
         /// It is called after the first fetch of the data source is finished.
         open func didInitialize(of dataSource: DataSource<RoomType>) {
-
+            // override
         }
 
         // MARK: -
@@ -170,6 +170,7 @@ extension Muni {
                 self.isFirstFetching = false
                 return
             }
+            // TODO: スクロールが逆になってる問題
             if canLoadNextToDataSource && scrollView.contentOffset.y < threshold && !scrollView.isDecelerating {
                 if !self.dataSource.isLast && self.limit <= self.dataSource.count {
                     self.isLoading = true
