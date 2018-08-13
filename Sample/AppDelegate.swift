@@ -23,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
-//        _ = try! Auth.auth().signOut()
-
         guard let user: FirebaseAuth.User = Auth.auth().currentUser else {
             Auth.auth().signInAnonymously { [weak self] (result, error) in
                 if let error = error {
@@ -41,6 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 })
             }
             return true
+        }
+
+        User.get(user.uid) { (user, error) in
+            if user == nil {
+                _ = try! Auth.auth().signOut()
+            }
         }
 
         let viewController: BoxViewController = BoxViewController(userID: user.uid)

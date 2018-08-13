@@ -8,21 +8,24 @@
 
 import UIKit
 
-class MessageViewRightCell: MessageViewCell {
+public class MessageViewRightCell: MessageViewCell {
     
-    @IBOutlet weak var balloonView: UIView!
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet public weak var titleLabel: UILabel!
+    @IBOutlet public weak var balloonView: UIView!
+    @IBOutlet public weak var textLabel: UILabel!
+    @IBOutlet public weak var dateLabel: UILabel!
 
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         self.balloonView.layer.cornerRadius = 16
+        self.titleLabel.text = nil
         self.textLabel.text = nil
         self.dateLabel.text = nil
     }
 
-    override func prepareForReuse() {
+    public override func prepareForReuse() {
         super.prepareForReuse()
+        self.titleLabel.text = nil
         self.textLabel.text = nil
         self.dateLabel.text = nil
     }
