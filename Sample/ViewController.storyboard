@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JEa-Pd-XeP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JEa-Pd-XeP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,11 +31,29 @@
                                     <action selector="addRoom:" destination="JEa-Pd-XeP" eventType="touchUpInside" id="Gig-OL-t5r"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agf-zT-dPG">
+                                <rect key="frame" x="32" y="60" width="311" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="YOUR ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dn6-qK-wDc">
+                                <rect key="frame" x="32" y="89" width="311" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="mPf-0C-6jd" firstAttribute="trailing" secondItem="dn6-qK-wDc" secondAttribute="trailing" constant="32" id="4Ej-zH-yk7"/>
+                            <constraint firstItem="Agf-zT-dPG" firstAttribute="top" secondItem="mPf-0C-6jd" secondAttribute="top" constant="40" id="7Rn-kO-dJh"/>
+                            <constraint firstItem="dn6-qK-wDc" firstAttribute="top" secondItem="Agf-zT-dPG" secondAttribute="bottom" constant="8" id="Cgx-eU-ANa"/>
                             <constraint firstItem="mPf-0C-6jd" firstAttribute="trailing" secondItem="JD4-Vb-hED" secondAttribute="trailing" constant="32" id="OPZ-lr-kby"/>
+                            <constraint firstItem="dn6-qK-wDc" firstAttribute="leading" secondItem="mPf-0C-6jd" secondAttribute="leading" constant="32" id="Sm0-Ml-p1C"/>
                             <constraint firstItem="yGl-XD-VDF" firstAttribute="leading" secondItem="mPf-0C-6jd" secondAttribute="leading" constant="32" id="UDu-vA-iDi"/>
+                            <constraint firstItem="mPf-0C-6jd" firstAttribute="trailing" secondItem="Agf-zT-dPG" secondAttribute="trailing" constant="32" id="Wnu-zE-PN9"/>
+                            <constraint firstItem="Agf-zT-dPG" firstAttribute="leading" secondItem="mPf-0C-6jd" secondAttribute="leading" constant="32" id="ZP8-2T-Qan"/>
                             <constraint firstItem="yGl-XD-VDF" firstAttribute="top" secondItem="JD4-Vb-hED" secondAttribute="bottom" constant="32" id="iqh-o1-TFz"/>
                             <constraint firstItem="JD4-Vb-hED" firstAttribute="top" secondItem="mPf-0C-6jd" secondAttribute="top" constant="200" id="pJ5-gc-Bgj"/>
                             <constraint firstItem="JD4-Vb-hED" firstAttribute="leading" secondItem="mPf-0C-6jd" secondAttribute="leading" constant="32" id="rdJ-UG-iRR"/>
@@ -43,6 +62,7 @@
                         <viewLayoutGuide key="safeArea" id="mPf-0C-6jd"/>
                     </view>
                     <connections>
+                        <outlet property="idField" destination="dn6-qK-wDc" id="B2p-a4-7x0"/>
                         <outlet property="textField" destination="JD4-Vb-hED" id="uel-jm-K5c"/>
                     </connections>
                 </viewController>

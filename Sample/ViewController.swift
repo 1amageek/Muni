@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var idField: UITextField!
+
     @IBOutlet weak var textField: UITextField!
     @IBAction func addRoom(_ sender: Any) {
 
@@ -28,7 +30,12 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let user: FirebaseAuth.User = Auth.auth().currentUser else { return }
+        self.idField.text = user.uid
 
+        print("**************************************")
+        print("YOUR ID: ", user.uid)
+        print("**************************************")
         // Do any additional setup after loading the view.
     }
 
