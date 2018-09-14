@@ -4,7 +4,7 @@ platform :ios, '10.0'
 target 'Muni' do
   use_frameworks!
 
-  pod 'Pring'
+  pod 'Pring', '~> 0.13.2'
   pod 'Toolbar'
 
   target 'MuniTests' do
