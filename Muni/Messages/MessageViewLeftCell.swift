@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageViewLeftCell: MessageViewCell {
+open class MessageViewLeftCell: MessageViewCell {
     
     @IBOutlet public weak var titleLabel: UILabel!
     @IBOutlet public weak var textLabel: UILabel!

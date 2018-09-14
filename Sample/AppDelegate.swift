@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("YOUR ID: ", user.uid)
         print("**************************************")
 
+
         User.get(user.uid) { (user, error) in
             if user == nil {
                 _ = try! Auth.auth().signOut()
