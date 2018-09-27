@@ -24,7 +24,7 @@ open class MessageViewCell: UICollectionViewCell {
         self.setNeedsLayout()
         self.layoutIfNeeded()
         var size: CGSize = UIScreen.main.bounds.size
-        size.height = self.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        size.height = self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         self.cacheSize = size
         return size
     }

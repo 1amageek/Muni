@@ -133,11 +133,11 @@ extension Muni {
         }
         
         internal func addKeyboardObservers() {
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         }
         
         internal func removeKeyboardObservers() {
-            NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         }
         
         // MARK: -
@@ -274,7 +274,7 @@ extension Muni {
                 return
             }
             room.viewers = [senderID]
-            room.recentTranscript = transcript.value as! [String : Any]
+            room.recentTranscript = transcript.value
             room.transcripts.insert(transcript)
             room.update { [weak self] (error) in
                 self?.transcript(didSend: transcript, reference: transcript.reference, error: error)
@@ -390,7 +390,7 @@ extension Muni {
         // MARK: -
         
         @objc internal func keyboardWillChangeFrame(_ notification: Notification) {
-            guard let keyboardEndFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
+            guard let keyboardEndFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             let newBottomInset: CGFloat = self.view.frame.height - keyboardEndFrame.minY - self.collectionView.safeAreaBottomInset
             collectionViewBottomInset = newBottomInset
         }
