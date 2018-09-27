@@ -29,10 +29,10 @@ open class InboxViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var thumbnailImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet open weak var thumbnailImageView: UIImageView!
+    @IBOutlet open weak var nameLabel: UILabel!
+    @IBOutlet open weak var messageLabel: UILabel!
+    @IBOutlet open weak var dateLabel: UILabel!
 
     open override func awakeFromNib() {
         super.awakeFromNib()
