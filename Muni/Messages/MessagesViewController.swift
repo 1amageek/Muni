@@ -16,29 +16,29 @@ extension Muni {
      A ViewController that displays a message.
      */
     open class MessagesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching, UITextViewDelegate {
-
+        
         /// Returns the Room holding the message.
         public let room: RoomType
-
+        
         /// Returns the toolbar to display in inputAccessoryView.
         public var toolBar: Toolbar = Toolbar()
-
+        
         /// limit The maximum number of transcripts to return.
         public let limit: Int
-
+        
         /// Returns the DataSource of Transcript.
         public var dataSource: DataSource<TranscriptType>
-
+        
         /// Returns a CollectionView that displays a message.
         public private(set) var collectionView: MessagesView!
-
+        
         /// Returns a Section that reflects the update of the data source.
         open var targetSection: Int {
             return 0
         }
-
+        
         open var calendar: Calendar = Calendar.current
-
+        
         /// Returns the textView of inputAccessoryView.
         open var textView: UITextView = {
             let textView: UITextView = UITextView(frame: .zero)
@@ -49,7 +49,7 @@ extension Muni {
             textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
             return textView
         }()
-
+        
         open lazy var titleView: MessagesTitleView? = {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
@@ -58,11 +58,13 @@ extension Muni {
             if let name: String = self.room.name {
                 titleView.nameLabel.text = name
             } else if let config: [String: Any] = room.config[senderID] as? [String: Any] {
-                titleView.nameLabel.text = config[MuniRoomConfigNameKey] as? String
+                if let nameKey: String = RoomType.configNameKey {
+                    titleView.nameLabel.text = config[nameKey] as? String
+                }
             }
             return titleView
         }()
-
+        
         public var isLoading: Bool = false {
             didSet {
                 if isLoading != oldValue, isLoading {
@@ -70,30 +72,30 @@ extension Muni {
                 }
             }
         }
-
+        
         /// Always override this property.
         open var senderID: String? {
             return nil
         }
-
+        
         /// A Boolean value that determines whether the `MessagesCollectionView` scrolls to the
         /// bottom whenever the `InputTextView` begins editing.
         ///
         /// The default value of this property is `false`.
         open var scrollsToBottomOnKeybordBeginsEditing: Bool = false
-
+        
         open override var canBecomeFirstResponder: Bool {
             return true
         }
-
+        
         open override var inputAccessoryView: UIView? {
             return self.toolBar
         }
-
+        
         open override var shouldAutorotate: Bool {
             return false
         }
-
+        
         /// Returns the date format of the message.
         open var dateFormatter: DateFormatter = {
             let formatter: DateFormatter = DateFormatter()
@@ -102,7 +104,7 @@ extension Muni {
             formatter.doesRelativeDateFormatting = true
             return formatter
         }()
-
+        
         /// Returns the date format of the message.
         open var timeFormatter: DateFormatter = {
             let formatter: DateFormatter = DateFormatter()
@@ -111,40 +113,40 @@ extension Muni {
             formatter.doesRelativeDateFormatting = true
             return formatter
         }()
-
+        
         // MARK: -
-
+        
         internal var constraint: NSLayoutConstraint?
-
+        
         internal var isFirstFetching: Bool = true
-
+        
         internal var collectionViewBottomInset: CGFloat = 0 {
             didSet {
                 self.collectionView.contentInset.bottom = collectionViewBottomInset
                 self.collectionView.scrollIndicatorInsets.bottom = collectionViewBottomInset
             }
         }
-
+        
         internal var keyboardOffsetFrame: CGRect {
             guard let inputFrame = inputAccessoryView?.frame else { return .zero }
             return CGRect(origin: inputFrame.origin, size: CGSize(width: inputFrame.width, height: inputFrame.height - self.collectionView.safeAreaBottomInset))
         }
-
+        
         internal func addKeyboardObservers() {
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
         }
-
+        
         internal func removeKeyboardObservers() {
             NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
         }
-
+        
         // MARK: -
-
+        
         public convenience init(roomID: String, fetching limit: Int = 20) {
             let room: RoomType = RoomType(id: roomID, value: [:])
             self.init(room: room, fetching: limit)
         }
-
+        
         public init(room: RoomType, fetching limit: Int = 20) {
             self.limit = limit
             self.room = room
@@ -157,11 +159,11 @@ extension Muni {
                 .dataSource(options: options)
             super.init(nibName: nil, bundle: nil)
         }
-
+        
         public required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-
+        
         open override func loadView() {
             super.loadView()
             self.textView.delegate = self
@@ -181,7 +183,7 @@ extension Muni {
             self.view.addSubview(self.collectionView)
             self.toolBar.setItems([ToolbarItem(customView: self.textView)], animated: false)
         }
-
+        
         open override func viewDidLoad() {
             super.viewDidLoad()
             self.navigationItem.titleView = self.titleView
@@ -216,34 +218,34 @@ extension Muni {
                     }
                 }).onCompleted { [weak self] (_, _) in
                     self?.isLoading = false
-                }
+            }
         }
-
+        
         /// Start listening
         public func listen() {
             self.dataSource.listen()
         }
-
+        
         open override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             self.markAsRead()
             addKeyboardObservers()
         }
-
+        
         open override func viewDidDisappear(_ animated: Bool) {
             super.viewDidDisappear(animated)
             removeKeyboardObservers()
         }
-
+        
         open override func viewDidLayoutSubviews() {
             self.collectionViewBottomInset = keyboardOffsetFrame.height
         }
-
+        
         open func markAsRead() {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
-
+            
             var viewers: [String] = self.room.viewers
             if !viewers.contains(senderID) {
                 viewers.append(senderID)
@@ -251,12 +253,12 @@ extension Muni {
                 self.room.update()
             }
         }
-
+        
         /// It is called after the first fetch of the data source is finished.
         open func didInitialize(of dataSource: DataSource<TranscriptType>) {
             // override
         }
-
+        
         /// Call this method to send the message.
         @objc
         public func send() {
@@ -278,35 +280,35 @@ extension Muni {
                 self?.transcript(didSend: transcript, reference: transcript.reference, error: error)
             }
         }
-
+        
         /// Set contents in Transcript.
         /// It must be overridden.
         /// - returns: If false is set, messages will not be sent.
         open func transcript(willSend transcript: TranscriptType) -> Bool {
             return false
         }
-
+        
         /// Called after the message has been sent.
         open func transcript(didSend transcript: TranscriptType, reference: DocumentReference?, error: Error?) {
             
         }
-
+        
         // MARK: -
-
+        
         open func numberOfSections(in collectionView: UICollectionView) -> Int {
             return 1
         }
-
+        
         open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return self.dataSource.count
         }
-
+        
         open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
             let transcript: TranscriptType = self.dataSource[indexPath.item]
-
+            
             var day: String? = nil
             if indexPath.item == 0 {
                 day = self.dateFormatter.string(from: transcript.updatedAt)
@@ -319,7 +321,7 @@ extension Muni {
                     day = self.dateFormatter.string(from: transcript.updatedAt)
                 }
             }
-
+            
             if transcript.from.id! == senderID {
                 let cell: MessageViewRightCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewRightCell", for: indexPath) as! MessageViewRightCell
                 cell.titleLabel.isHidden = day == nil
@@ -336,17 +338,17 @@ extension Muni {
                 return cell
             }
         }
-
+        
         open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         }
-
+        
         open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
             let transcript: TranscriptType = self.dataSource[indexPath.item]
-
+            
             var day: String? = nil
             if indexPath.item == 0 {
                 day = self.dateFormatter.string(from: transcript.updatedAt)
@@ -359,7 +361,7 @@ extension Muni {
                     day = self.dateFormatter.string(from: transcript.updatedAt)
                 }
             }
-
+            
             if transcript.from.id! == senderID {
                 let cell: MessageViewRightCell = UINib(nibName: "MessageViewRightCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MessageViewRightCell
                 cell.textLabel.text = transcript.text
@@ -378,29 +380,29 @@ extension Muni {
                 return size
             }
         }
-
+        
         // MARK: -
-
+        
         public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-
+            
         }
-
+        
         // MARK: -
-
+        
         @objc internal func keyboardWillChangeFrame(_ notification: Notification) {
             guard let keyboardEndFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
             let newBottomInset: CGFloat = self.view.frame.height - keyboardEndFrame.minY - self.collectionView.safeAreaBottomInset
             collectionViewBottomInset = newBottomInset
         }
-
+        
         // MARK: -
-
+        
         public func textViewDidBeginEditing(_ textView: UITextView) {
             if scrollsToBottomOnKeybordBeginsEditing {
                 collectionView.scrollToBottom(animated: true)
             }
         }
-
+        
         open func textViewDidChange(_ textView: UITextView) {
             let size: CGSize = textView.sizeThatFits(textView.bounds.size)
             if let constraint: NSLayoutConstraint = self.constraint {
@@ -410,9 +412,9 @@ extension Muni {
             self.constraint?.priority = .defaultHigh
             self.constraint?.isActive = true
         }
-
+        
         // MARK: -
-
+        
         private var threshold: CGFloat {
             if #available(iOS 11.0, *) {
                 return -self.view.safeAreaInsets.top
@@ -420,9 +422,9 @@ extension Muni {
                 return -self.view.layoutMargins.top
             }
         }
-
+        
         private var canLoadNextToDataSource: Bool = true
-
+        
         public func scrollViewDidScroll(_ scrollView: UIScrollView) {
             if isFirstFetching {
                 self.isFirstFetching = false
