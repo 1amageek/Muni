@@ -21,7 +21,7 @@ Muni is a chat framework made with Firestore.
   s.resources = "Muni/**/*.{xib}"
   s.requires_arc = true
   s.static_framework = true
-  s.dependency "Pring", "~> 0.13.2"
+  s.dependency "Pring"
   s.dependency "Toolbar"
   s.dependency "Firebase"
   s.dependency "Firebase/Firestore"
