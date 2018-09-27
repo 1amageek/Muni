@@ -111,6 +111,10 @@ extension Muni {
 
         // MARK: -
 
+        open override func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+        }
+
         open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return self.dataSource.count
         }
@@ -124,10 +128,12 @@ extension Muni {
             if let name: String = room.name {
                 cell.nameLabel.text = name
             } else if let config: [String: Any] = room.config[self.userID] as? [String: Any] {
-                cell.nameLabel.text = config[MuniRoomConfigNameKey] as? String
+                if let nameKey: String = RoomType.configNameKey {
+                    cell.nameLabel.text = config[nameKey] as? String
+                }
             }
 
-            if let text: String = room.recentTranscript[MuniRoomRecentTranscriptTextKey] as? String {
+            if let text: String = room.recentTranscript["text"] as? String {
                 cell.messageLabel?.text = text
             }
 
@@ -136,7 +142,6 @@ extension Muni {
             } else {
                 cell.format = .bold
             }
-
             return cell
         }
 
@@ -144,6 +149,10 @@ extension Muni {
             let room: RoomType = self.dataSource[indexPath.item]
             let viewController: MessagesViewController = messageViewController(with: room)
             self.navigationController?.pushViewController(viewController, animated: true)
+        }
+
+        open override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            // Cancel image loading
         }
 
         /// Transit to the selected Room. Always override this function.

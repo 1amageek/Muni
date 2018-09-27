@@ -41,10 +41,21 @@ public protocol RoomProtocol {
     /// let name: String = userConfig[MuniRoomConfigNameKey]
     /// ```
     var config: [String: Any] { get set }
+
+    /// NameKey used in Config
+    static var configNameKey: String? { get }
+
+    /// ThumbnailImageURLKey used in Config
+    static var configThumbnailImageURLKey: String? { get }
 }
 
-public let MuniRoomRecentTranscriptTextKey: String = "text"
+public extension RoomProtocol {
 
-public let MuniRoomConfigNameKey: String = "name"
+    public static var configNameKey: String? {
+        return "name"
+    }
 
-public let MuniRoomConfigThumbnailImageKey: String = "thumbnailImage"
+    public static var configThumbnailImageURLKey: String? {
+        return "thumbnailImageURL"
+    }
+}
