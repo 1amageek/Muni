@@ -38,7 +38,7 @@ public protocol RoomProtocol {
     /// For example, in case of two people chatting, if you want to show each other's name and thumbnail, set here.
     /// ```
     /// let userConfig: [String: Any] = config[user.id]
-    /// let name: String = userConfig[MuniRoomConfigNameKey]
+    /// let name: String = userConfig[Room.configNameKey]
     /// ```
     var config: [String: Any] { get set }
 
