@@ -238,7 +238,7 @@ extension Muni {
         }
         
         open override func viewDidLayoutSubviews() {
-            self.collectionViewBottomInset = keyboardOffsetFrame.height
+            self.collectionViewBottomInset = keyboardOffsetFrame.height + self.toolBar.minimumHeight + self.toolBar.padding.bottom + self.toolBar.padding.top
         }
         
         open func markAsRead() {
@@ -279,6 +279,7 @@ extension Muni {
             room.update { [weak self] (error) in
                 self?.transcript(didSend: transcript, reference: transcript.reference, error: error)
             }
+            self.textView.resignFirstResponder()
         }
         
         /// Set contents in Transcript.
@@ -392,7 +393,7 @@ extension Muni {
         @objc internal func keyboardWillChangeFrame(_ notification: Notification) {
             guard let keyboardEndFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
             let newBottomInset: CGFloat = self.view.frame.height - keyboardEndFrame.minY - self.collectionView.safeAreaBottomInset
-            collectionViewBottomInset = newBottomInset
+            collectionViewBottomInset = newBottomInset + self.toolBar.minimumHeight + self.toolBar.padding.bottom + self.toolBar.padding.top
         }
         
         // MARK: -
