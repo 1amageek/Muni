@@ -11,6 +11,8 @@ import FirebaseAuth
 import FirebaseFirestore
 import Toolbar
 import Muni
+import Instantiate
+import InstantiateStandard
 
 class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController {
 
@@ -27,6 +29,7 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
+        self.collectionView.registerNib(type: HeaderCell.self)
         self.sendBarItem = ToolbarItem(title: "Send", target: self, action: #selector(send))
         self.toolBar.setItems([ToolbarItem(customView: self.textView), self.sendBarItem], animated: false)
         self.listen()
@@ -41,7 +44,10 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
     }
 
     override func transcript(didSend transcript: Transcript, reference: DocumentReference?, error: Error?) {
-        print(reference?.path)
+        UIView.animate(withDuration: 0.3) {
+            self.textViewDidChange(self.textView)
+            self.textView.layoutIfNeeded()
+        }
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -62,9 +68,7 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         case 1:
             return super.collectionView(collectionView, cellForItemAt: indexPath)
         default:
-            let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
-            cell.backgroundView?.backgroundColor = UIColor.green
-            return cell
+            return HeaderCell.dequeue(from: collectionView, for: indexPath)
         }
     }
 
@@ -73,7 +77,10 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         case 1:
             return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath)
         default:
-            return CGSize(width: UIScreen.main.bounds.size.width, height: 100)
+            let cell: HeaderCell = HeaderCell.instantiate()
+            var size: CGSize = cell.sizeThatFits(.zero)
+            size.width = UIScreen.main.bounds.width
+            return size
         }
     }
 }

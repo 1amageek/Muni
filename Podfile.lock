@@ -117,8 +117,11 @@ PODS:
     - gRPC-Core (= 1.14.0)
     - gRPC-RxLibrary (= 1.14.0)
   - GTMSessionFetcher/Core (1.2.0)
+  - Instantiate (2.2.0)
+  - InstantiateStandard (3.0.0):
+    - Instantiate (~> 2.2)
   - leveldb-library (1.20)
-  - Muni (0.5.1):
+  - Muni (0.6.1):
     - Firebase
     - Firebase/Firestore
     - Firebase/Storage
@@ -129,7 +132,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Pring (0.13.4):
+  - Pring (0.13.6):
     - Firebase
     - Firebase/Firestore
     - Firebase/Storage
@@ -138,6 +141,8 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Auth
+  - Instantiate
+  - InstantiateStandard
   - Muni (from `./`)
   - Pring (~> 0.13.2)
   - Toolbar
@@ -161,6 +166,8 @@ SPEC REPOS:
     - gRPC-ProtoRPC
     - gRPC-RxLibrary
     - GTMSessionFetcher
+    - Instantiate
+    - InstantiateStandard
     - leveldb-library
     - nanopb
     - Pring
@@ -189,13 +196,15 @@ SPEC CHECKSUMS:
   gRPC-ProtoRPC: 76f6053639a842e1fb45fa82aa598bf3f4d9f66f
   gRPC-RxLibrary: 3c305f32155024b116b780f389323c73a28197e6
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  Instantiate: 9810ecb69b7d0c393e1938559a6f896587785b64
+  InstantiateStandard: 03f4781fc1dcdec860bbd2315b006d5644ab5f81
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  Muni: 40b3cb0a60e1b6584c0f43a6050621610a098301
+  Muni: 15f8f37178702f615754fa32eeff02568747e04e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Pring: d7966b64a97b81085262521dd95734be6016681c
+  Pring: 31f37679404480bee3070d65614fa423e71f95a8
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Toolbar: 240546f9a531266f639b713994b8b9eb7bb3391b
 
-PODFILE CHECKSUM: 7c86922c19c7d710ed9353f3fa87f59a09c9d7cb
+PODFILE CHECKSUM: cdcac03ae9fb0274c557bfe0f26fe679a93d8a7a
 
 COCOAPODS: 1.5.3

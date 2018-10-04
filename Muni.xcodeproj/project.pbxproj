@@ -41,6 +41,8 @@
 		128180E9211069BC00F1E20D /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122988D4210AE10D00068424 /* InboxViewController.swift */; };
 		129585EA2117D600001F00FA /* MessagesTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129585E92117D600001F00FA /* MessagesTitleView.xib */; };
 		129585EC2117D6FE001F00FA /* MessagesTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129585EB2117D6FE001F00FA /* MessagesTitleView.swift */; };
+		12E521392165BE7D00BD34D8 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12E521382165BE7D00BD34D8 /* HeaderCell.xib */; };
+		12E5213B2165BEC000BD34D8 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E5213A2165BEC000BD34D8 /* HeaderCell.swift */; };
 		3DC4CB539A669C0291F96886 /* Pods_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F0617ACEEBD1F60A61BBC9 /* Pods_Sample.framework */; };
 		60122F0D8444088278F61305 /* Pods_Muni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72CE47424A6AC79780BE3E28 /* Pods_Muni.framework */; };
 		66C834A0949E338496488DEE /* Pods_MuniTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80549811863E0642A4087001 /* Pods_MuniTests.framework */; };
@@ -110,6 +112,8 @@
 		128180E62110648600F1E20D /* BoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxViewController.swift; sourceTree = "<group>"; };
 		129585E92117D600001F00FA /* MessagesTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesTitleView.xib; sourceTree = "<group>"; };
 		129585EB2117D6FE001F00FA /* MessagesTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTitleView.swift; sourceTree = "<group>"; };
+		12E521382165BE7D00BD34D8 /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
+		12E5213A2165BEC000BD34D8 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		12EEB61C210B322B0023CC04 /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
 		12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewLeftCell.xib; sourceTree = "<group>"; };
 		12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewRightCell.xib; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 				12298908210AF80000068424 /* Transcript.swift */,
 				128180D821104FEC00F1E20D /* MessageViewController.swift */,
 				128180E62110648600F1E20D /* BoxViewController.swift */,
+				12E521382165BE7D00BD34D8 /* HeaderCell.xib */,
+				12E5213A2165BEC000BD34D8 /* HeaderCell.swift */,
 				12EEB626210BF2FD0023CC04 /* Cell */,
 				12298915210B021700068424 /* ViewController.swift */,
 				12298917210B022400068424 /* ViewController.storyboard */,
@@ -499,6 +505,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12E521392165BE7D00BD34D8 /* HeaderCell.xib in Resources */,
 				122988DD210AE10E00068424 /* LaunchScreen.storyboard in Resources */,
 				12298918210B022400068424 /* ViewController.storyboard in Resources */,
 				12298912210AFAD600068424 /* GoogleService-Info.plist in Resources */,
@@ -618,6 +625,8 @@
 				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/Instantiate/Instantiate.framework",
+				"${BUILT_PRODUCTS_DIR}/InstantiateStandard/InstantiateStandard.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -633,6 +642,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instantiate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InstantiateStandard.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -720,6 +731,7 @@
 				128180E72110648600F1E20D /* BoxViewController.swift in Sources */,
 				122988D3210AE10D00068424 /* AppDelegate.swift in Sources */,
 				12298907210AF7F800068424 /* Room.swift in Sources */,
+				12E5213B2165BEC000BD34D8 /* HeaderCell.swift in Sources */,
 				12298916210B021700068424 /* ViewController.swift in Sources */,
 				128180D921104FEC00F1E20D /* MessageViewController.swift in Sources */,
 				12298909210AF80000068424 /* Transcript.swift in Sources */,

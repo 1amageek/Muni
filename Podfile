@@ -19,5 +19,7 @@ target 'Sample' do
 
   pod 'Firebase/Auth'
   pod 'Muni', :path => './'
+  pod 'Instantiate'
+  pod 'InstantiateStandard'
 
 end

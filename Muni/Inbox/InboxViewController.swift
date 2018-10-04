@@ -56,9 +56,8 @@ extension Muni {
             let options: Options = Options()
             options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
             self.dataSource = RoomType
+                .order(by: "updatedAt", descending: true)
                 .where("members", arrayContains: userID)
-                // FIXME: Index is not valid
-//                .order(by: "updatedAt", descending: true)
                 .limit(to: limit)
                 .dataSource(options: options)
             super.init(nibName: nil, bundle: nil)
