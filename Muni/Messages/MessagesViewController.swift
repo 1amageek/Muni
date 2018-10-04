@@ -220,9 +220,13 @@ extension Muni {
                     self?.isLoading = false
             }
         }
-        
+
+        open override func viewWillLayoutSubviews() {
+            self.collectionView.frame = self.view.bounds
+        }
+
         /// Start listening
-        public func listen() {
+        open func listen() {
             self.dataSource.listen()
         }
         

@@ -74,13 +74,14 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
 
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
-        case 1:
-            return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath)
-        default:
+        case 0:
             let cell: HeaderCell = HeaderCell.instantiate()
             var size: CGSize = cell.sizeThatFits(.zero)
             size.width = UIScreen.main.bounds.width
             return size
+        case 1:
+            return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath)
+        default: return .zero
         }
     }
 }

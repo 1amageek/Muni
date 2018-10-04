@@ -10,6 +10,14 @@ import UIKit
 
 open class MessagesView: UICollectionView {
 
+    internal var safeAreaTopInset: CGFloat {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaInsets.top
+        } else {
+            return 0
+        }
+    }
+
     internal var safeAreaBottomInset: CGFloat {
         if #available(iOS 11.0, *) {
             return self.safeAreaInsets.bottom
