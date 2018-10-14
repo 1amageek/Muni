@@ -21,4 +21,6 @@ class Room: Object, RoomProtocol {
     dynamic var recentTranscript: [String: Any] = [:]
     dynamic var transcripts: NestedCollection<TranscriptType> = []
     dynamic var config: [String: Any] = [:]
+    dynamic var isMessagingEnabled: Bool = true
+    dynamic var isHidden: Bool = false
 }

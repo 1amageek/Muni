@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1227D058217329E600040B49 /* MuniProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12298900210AEAB600068424 /* MuniProtocol.swift */; };
+		1227D059217329E600040B49 /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180CA2110441E00F1E20D /* UserProtocol.swift */; };
+		1227D05A217329E600040B49 /* RoomProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180CC2110443000F1E20D /* RoomProtocol.swift */; };
+		1227D05B217329E600040B49 /* TranscriptProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180CE2110444400F1E20D /* TranscriptProtocol.swift */; };
+		1227D05C217329EA00040B49 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122988D4210AE10D00068424 /* InboxViewController.swift */; };
+		1227D05D217329EA00040B49 /* InboxViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180E1211061E300F1E20D /* InboxViewCell.swift */; };
+		1227D05E217329EA00040B49 /* InboxViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 128180E32110620900F1E20D /* InboxViewCell.xib */; };
+		1227D05F217329EE00040B49 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180D321104E4100F1E20D /* MessagesViewController.swift */; };
+		1227D060217329EE00040B49 /* MessagesViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A551B210C377F0084A3E9 /* MessagesViewFlowLayout.swift */; };
+		1227D061217329EE00040B49 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1229891D210B146D00068424 /* MessagesView.swift */; };
+		1227D062217329EE00040B49 /* MessagesTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129585E92117D600001F00FA /* MessagesTitleView.xib */; };
+		1227D063217329EE00040B49 /* MessagesTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129585EB2117D6FE001F00FA /* MessagesTitleView.swift */; };
+		1227D064217329EE00040B49 /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB61C210B322B0023CC04 /* MessageViewCell.swift */; };
+		1227D065217329EE00040B49 /* MessageViewLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */; };
+		1227D066217329EE00040B49 /* MessageViewLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB622210B410B0023CC04 /* MessageViewLeftCell.swift */; };
+		1227D067217329EE00040B49 /* MessageViewRightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */; };
+		1227D068217329EE00040B49 /* MessageViewRightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB624210B412A0023CC04 /* MessageViewRightCell.swift */; };
 		122988BC210ADFEE00068424 /* Muni.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122988B2210ADFEE00068424 /* Muni.framework */; };
 		122988C1210ADFEE00068424 /* MuniTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122988C0210ADFEE00068424 /* MuniTests.swift */; };
 		122988C3210ADFEE00068424 /* Muni.h in Headers */ = {isa = PBXBuildFile; fileRef = 122988B5210ADFEE00068424 /* Muni.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -382,7 +399,6 @@
 				122988CD210AE10D00068424 /* Frameworks */,
 				122988CE210AE10D00068424 /* Resources */,
 				A912BFED17DA624573A39B1D /* [CP] Embed Pods Frameworks */,
-				E05F90A945E8882481C58DF4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -508,6 +524,10 @@
 				12E521392165BE7D00BD34D8 /* HeaderCell.xib in Resources */,
 				122988DD210AE10E00068424 /* LaunchScreen.storyboard in Resources */,
 				12298918210B022400068424 /* ViewController.storyboard in Resources */,
+				1227D065217329EE00040B49 /* MessageViewLeftCell.xib in Resources */,
+				1227D062217329EE00040B49 /* MessagesTitleView.xib in Resources */,
+				1227D05E217329EA00040B49 /* InboxViewCell.xib in Resources */,
+				1227D067217329EE00040B49 /* MessageViewRightCell.xib in Resources */,
 				12298912210AFAD600068424 /* GoogleService-Info.plist in Resources */,
 				122988DA210AE10E00068424 /* Assets.xcassets in Resources */,
 			);
@@ -668,30 +688,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E05F90A945E8882481C58DF4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Sample/Pods-Sample-resources.sh",
-				"${PODS_ROOT}/../Muni/Inbox/InboxViewCell.xib",
-				"${PODS_ROOT}/../Muni/Messages/MessagesTitleView.xib",
-				"${PODS_ROOT}/../Muni/Messages/MessageViewLeftCell.xib",
-				"${PODS_ROOT}/../Muni/Messages/MessageViewRightCell.xib",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InboxViewCell.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MessagesTitleView.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MessageViewLeftCell.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MessageViewRightCell.nib",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sample/Pods-Sample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -727,14 +723,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1227D068217329EE00040B49 /* MessageViewRightCell.swift in Sources */,
+				1227D060217329EE00040B49 /* MessagesViewFlowLayout.swift in Sources */,
+				1227D05F217329EE00040B49 /* MessagesViewController.swift in Sources */,
+				1227D064217329EE00040B49 /* MessageViewCell.swift in Sources */,
+				1227D066217329EE00040B49 /* MessageViewLeftCell.swift in Sources */,
+				1227D061217329EE00040B49 /* MessagesView.swift in Sources */,
 				12298905210AF7F100068424 /* User.swift in Sources */,
 				128180E72110648600F1E20D /* BoxViewController.swift in Sources */,
+				1227D063217329EE00040B49 /* MessagesTitleView.swift in Sources */,
 				122988D3210AE10D00068424 /* AppDelegate.swift in Sources */,
 				12298907210AF7F800068424 /* Room.swift in Sources */,
 				12E5213B2165BEC000BD34D8 /* HeaderCell.swift in Sources */,
 				12298916210B021700068424 /* ViewController.swift in Sources */,
+				1227D05A217329E600040B49 /* RoomProtocol.swift in Sources */,
+				1227D05C217329EA00040B49 /* InboxViewController.swift in Sources */,
+				1227D05B217329E600040B49 /* TranscriptProtocol.swift in Sources */,
+				1227D05D217329EA00040B49 /* InboxViewCell.swift in Sources */,
 				128180D921104FEC00F1E20D /* MessageViewController.swift in Sources */,
 				12298909210AF80000068424 /* Transcript.swift in Sources */,
+				1227D059217329E600040B49 /* UserProtocol.swift in Sources */,
+				1227D058217329E600040B49 /* MuniProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

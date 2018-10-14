@@ -4,7 +4,7 @@ platform :ios, '10.0'
 target 'Muni' do
   use_frameworks!
 
-  pod 'Pring', '~> 0.13.2'
+  pod 'Pring'
   pod 'Toolbar'
 
   target 'MuniTests' do
@@ -18,7 +18,9 @@ target 'Sample' do
   use_frameworks!
 
   pod 'Firebase/Auth'
-  pod 'Muni', :path => './'
+  pod 'Pring'
+  pod 'Toolbar'
+  #pod 'Muni', :path => '../Muni'
   pod 'Instantiate'
   pod 'InstantiateStandard'
 

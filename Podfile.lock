@@ -5,20 +5,20 @@ PODS:
   - BoringSSL/Implementation (10.0.6):
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
-  - Firebase (5.9.0):
-    - Firebase/Core (= 5.9.0)
-  - Firebase/Auth (5.9.0):
+  - Firebase (5.10.0):
+    - Firebase/Core (= 5.10.0)
+  - Firebase/Auth (5.10.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
-  - Firebase/Core (5.9.0):
+  - Firebase/Core (5.10.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.2.0)
-  - Firebase/CoreOnly (5.9.0):
-    - FirebaseCore (= 5.1.4)
-  - Firebase/Firestore (5.9.0):
+  - Firebase/CoreOnly (5.10.0):
+    - FirebaseCore (= 5.1.5)
+  - Firebase/Firestore (5.10.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (= 0.13.4)
-  - Firebase/Storage (5.9.0):
+    - FirebaseFirestore (= 0.13.5)
+  - Firebase/Storage (5.10.0):
     - Firebase/CoreOnly
     - FirebaseStorage (= 3.0.2)
   - FirebaseAnalytics (5.2.0):
@@ -36,20 +36,20 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (5.1.4):
+  - FirebaseCore (5.1.5):
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseFirestore (0.13.4):
+  - FirebaseFirestore (0.13.5):
     - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 5.0)
-    - FirebaseFirestore/abseil-cpp (= 0.13.4)
+    - FirebaseCore (~> 5.1)
+    - FirebaseFirestore/abseil-cpp (= 0.13.5)
     - "gRPC-C++ (~> 0.0.3)"
     - gRPC-ProtoRPC (~> 1.0)
     - leveldb-library (~> 1.20)
     - nanopb (~> 0.3.8)
     - Protobuf (~> 3.1)
-  - FirebaseFirestore/abseil-cpp (0.13.4):
+  - FirebaseFirestore/abseil-cpp (0.13.5):
     - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 5.0)
+    - FirebaseCore (~> 5.1)
     - "gRPC-C++ (~> 0.0.3)"
     - gRPC-ProtoRPC (~> 1.0)
     - leveldb-library (~> 1.20)
@@ -69,23 +69,23 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.0):
+  - GoogleUtilities/AppDelegateSwizzler (5.3.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.0)
-  - GoogleUtilities/Logger (5.3.0):
+  - GoogleUtilities/Environment (5.3.2)
+  - GoogleUtilities/Logger (5.3.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.0):
+  - GoogleUtilities/MethodSwizzler (5.3.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.0):
+  - GoogleUtilities/Network (5.3.2):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.0)"
-  - GoogleUtilities/Reachability (5.3.0):
+  - "GoogleUtilities/NSData+zlib (5.3.2)"
+  - GoogleUtilities/Reachability (5.3.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.0):
+  - GoogleUtilities/UserDefaults (5.3.2):
     - GoogleUtilities/Logger
   - gRPC (1.14.0):
     - gRPC-RxLibrary (= 1.14.0)
@@ -121,18 +121,12 @@ PODS:
   - InstantiateStandard (3.0.0):
     - Instantiate (~> 2.2)
   - leveldb-library (1.20)
-  - Muni (0.6.1):
-    - Firebase
-    - Firebase/Firestore
-    - Firebase/Storage
-    - Pring
-    - Toolbar
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Pring (0.13.6):
+  - Pring (0.13.7):
     - Firebase
     - Firebase/Firestore
     - Firebase/Storage
@@ -143,8 +137,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Instantiate
   - InstantiateStandard
-  - Muni (from `./`)
-  - Pring (~> 0.13.2)
+  - Pring
   - Toolbar
 
 SPEC REPOS:
@@ -174,22 +167,18 @@ SPEC REPOS:
     - Protobuf
     - Toolbar
 
-EXTERNAL SOURCES:
-  Muni:
-    :path: "./"
-
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
-  Firebase: 383fa29aca93e371cab776b48a5c66544d3c2003
+  Firebase: 6691d47562a780c26281ce8464518faafc90c610
   FirebaseAnalytics: 831f1f127f4a75698e9875a87bf7e2668730d953
   FirebaseAuth: 504b198ceb3472dca5c65bb95544ea44cfc9439e
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 2a84b6b325792a4319ef71ee18819dcba08d2fd7
-  FirebaseFirestore: eaf0b6244e9463e2429fe216666b641e4dec606b
+  FirebaseCore: c6079de64c1a87000e52e9b408dddcadc901177f
+  FirebaseFirestore: 45a9a3045a2dc27f23c13bf832556fe287fbe1b5
   FirebaseInstanceID: 78ba376fcd5b94c001f9999b2cbd3d1f1e56e78d
   FirebaseStorage: fd82e5e5c474897e19972b34b22ac0f589dce04e
   GoogleAppMeasurement: 2b3a023a61239c8d002e6e4fcf4abce8eddce0e0
-  GoogleUtilities: 760ccb53b7c7f40f9c02d8c241f76f841a7a6162
+  GoogleUtilities: 82f04aeff8426309dbdbc75f6c8accd1e584a5da
   gRPC: 9d4c549f37c7cef22478634bac7a0405b6e3dbfb
   "gRPC-C++": ee0b01db3122f0b6c2be28b5b11039f62fa15fe6
   gRPC-Core: f4836515817c0eb479aeeb9cc27c91c4ba62a9f6
@@ -199,12 +188,11 @@ SPEC CHECKSUMS:
   Instantiate: 9810ecb69b7d0c393e1938559a6f896587785b64
   InstantiateStandard: 03f4781fc1dcdec860bbd2315b006d5644ab5f81
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  Muni: 15f8f37178702f615754fa32eeff02568747e04e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Pring: 31f37679404480bee3070d65614fa423e71f95a8
+  Pring: 95723ccc7ca32384e4271ccc90e984d1672bce45
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Toolbar: 240546f9a531266f639b713994b8b9eb7bb3391b
 
-PODFILE CHECKSUM: cdcac03ae9fb0274c557bfe0f26fe679a93d8a7a
+PODFILE CHECKSUM: f3c264cb66daeb96f359f41b5fba1665d2aa3f22
 
 COCOAPODS: 1.5.3

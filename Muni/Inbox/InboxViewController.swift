@@ -19,7 +19,7 @@ extension Muni {
         public let userID: String
 
         /// Room's DataSource
-        public let dataSource: DataSource<RoomType>
+        public private(set) var dataSource: DataSource<RoomType>!
 
         /// limit The maximum number of rooms to return.
         public let limit: Int
@@ -53,15 +53,26 @@ extension Muni {
         public init(userID: String, fetching limit: Int = 20) {
             self.userID = userID
             self.limit = limit
-            let options: Options = Options()
-            options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
-            self.dataSource = RoomType
-                .order(by: "updatedAt", descending: true)
-                .where("members", arrayContains: userID)
-                .limit(to: limit)
-                .dataSource(options: options)
             super.init(nibName: nil, bundle: nil)
             self.title = "Message"
+            self.dataSource = dataSource(userID: userID, fetching: limit)
+        }
+
+        /// You can customize the data source by overriding here.
+        ///
+        /// - Parameters:
+        ///   - userID: Set the ID of the user who is participating in the Room.
+        ///   - limit: Set the number of Transcripts to display at once.
+        /// - Returns: Returns the DataSource with Query set.
+        open func dataSource(userID: String, fetching limit: Int = 20) -> DataSource<RoomType> {
+            let options: Options = Options()
+            options.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
+            return RoomType
+                .order(by: "updatedAt", descending: true)
+                .where("members", arrayContains: userID)
+                .where("isHidden", isEqualTo: false)
+                .limit(to: limit)
+                .dataSource(options: options)
         }
 
         public required init?(coder aDecoder: NSCoder) {

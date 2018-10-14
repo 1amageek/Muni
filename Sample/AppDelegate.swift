@@ -58,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let viewController: BoxViewController = BoxViewController(userID: user.uid)
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
-        navigationController.navigationBar.isTranslucent = true
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
 

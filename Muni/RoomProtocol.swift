@@ -34,6 +34,12 @@ public protocol RoomProtocol {
     /// Return the conversation in this room.
     var transcripts: NestedCollection<TranscriptType> { get set }
 
+    /// Returns if message is possible. default true.
+    var isMessagingEnabled: Bool { get set }
+
+    /// If it is false, it is not displayed in InBoxViewController.
+    var isHidden: Bool { get set }
+
     /// It keeps the settings for each user.
     /// For example, in case of two people chatting, if you want to show each other's name and thumbnail, set here.
     /// ```
