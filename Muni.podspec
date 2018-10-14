@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Muni"
-  s.version      = "0.6.2"
+  s.version      = "0.7.0"
   s.summary      = "Firestore message framework"
   s.description  = <<-DESC
 Muni is a chat framework made with Firestore.
