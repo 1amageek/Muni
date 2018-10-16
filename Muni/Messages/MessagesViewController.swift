@@ -18,7 +18,7 @@ extension Muni {
     open class MessagesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching, UITextViewDelegate {
         
         /// Returns the Room holding the message.
-        public let room: RoomType
+        public private(set) var room: RoomType
         
         /// Returns the toolbar to display in inputAccessoryView.
         public var toolBar: Toolbar = Toolbar()
@@ -115,6 +115,8 @@ extension Muni {
         }()
         
         // MARK: -
+
+        internal var disposer: Disposer<RoomType>?
         
         internal var constraint: NSLayoutConstraint?
         
@@ -187,6 +189,13 @@ extension Muni {
         open override func viewDidLoad() {
             super.viewDidLoad()
             self.navigationItem.titleView = self.titleView
+            self.disposer = self.room.listen { [weak self] (room, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                self?.room = room!
+            }
             self.dataSource
                 .on(parse: { (_, transcript, done) in
                     transcript.from.get({ (user, error) in
@@ -332,6 +341,8 @@ extension Muni {
                 cell.titleLabel.text = day
                 cell.textLabel.text = transcript.text
                 cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt)
+                cell.viewers = viewers(at: indexPath)
+                print("!!", cell.viewers)
                 return cell
             } else {
                 let cell: MessageViewLeftCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewLeftCell", for: indexPath) as! MessageViewLeftCell
@@ -339,6 +350,8 @@ extension Muni {
                 cell.titleLabel.text = day
                 cell.textLabel.text = transcript.text
                 cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt)
+                cell.viewers = viewers(at: indexPath)
+                print(cell.viewers)
                 return cell
             }
         }
@@ -371,6 +384,7 @@ extension Muni {
                 cell.textLabel.text = transcript.text
                 cell.titleLabel.isHidden = day == nil
                 cell.titleLabel.text = day
+                cell.viewers = viewers(at: indexPath)
                 var size: CGSize = cell.sizeThatFits(.zero)
                 size.width = UIScreen.main.bounds.width
                 return size
@@ -379,6 +393,7 @@ extension Muni {
                 cell.textLabel.text = transcript.text
                 cell.titleLabel.isHidden = day == nil
                 cell.titleLabel.text = day
+                cell.viewers = viewers(at: indexPath)
                 var size: CGSize = cell.sizeThatFits(.zero)
                 size.width = UIScreen.main.bounds.width
                 return size
@@ -418,6 +433,24 @@ extension Muni {
         }
         
         // MARK: -
+
+        public func viewers(at indexPath: IndexPath) -> [String] {
+            let previousDate: Date? = indexPath.item == 0 ? nil : self.dataSource[indexPath.item - 1].updatedAt
+            let nextDate: Date? = indexPath.item + 1 == self.dataSource.count ? nil : self.dataSource[indexPath.item].updatedAt
+            return viewers(from: previousDate, to: nextDate)//.filter { return $0 != senderID }
+        }
+
+        public func viewers(from: Date?, to: Date?) -> [String] {
+            print(from, to)
+            if let from: Date = from, let to: Date = to {
+                return [String](self.room.lastViewedTimestamps.filter { from < $0.value.dateValue() && $0.value.dateValue() <= to }.keys)
+            } else if let from: Date = from {
+                return [String](self.room.lastViewedTimestamps.filter { from < $0.value.dateValue() }.keys)
+            } else if let to: Date = to {
+                return [String](self.room.lastViewedTimestamps.filter { $0.value.dateValue() <= to }.keys)
+            }
+            return []
+        }
         
         private var threshold: CGFloat {
             if #available(iOS 11.0, *) {

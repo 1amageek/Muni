@@ -56,7 +56,7 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0: return 1
+        case 0: return 0
         case 1:
             return self.dataSource.count
         default: return 0
