@@ -13,7 +13,7 @@ extension Muni {
     /**
      A ViewController that displays conversation-enabled rooms.
     */
-    open class InboxViewController: UITableViewController {
+    open class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         /// The ID of the user holding the DataSource.
         public let userID: String
@@ -32,6 +32,8 @@ extension Muni {
             dateFormatter.doesRelativeDateFormatting = true
             return dateFormatter
         }()
+
+        public let tableView: UITableView = UITableView(frame: .zero, style: .plain)
 
         /// Returns a Section that reflects the update of the data source.
         open var targetSection: Int {
@@ -81,11 +83,14 @@ extension Muni {
 
         open override func loadView() {
             super.loadView()
+            self.view.addSubview(self.tableView)
             self.tableView.register(UINib(nibName: "InboxViewCell", bundle: nil), forCellReuseIdentifier: "InboxViewCell")
         }
 
         open override func viewDidLoad() {
             super.viewDidLoad()
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
             self.dataSource
                 .on({ [weak self] (snapshot, changes) in
                     guard let tableView: UITableView = self?.tableView else { return }
@@ -107,6 +112,10 @@ extension Muni {
                 })
         }
 
+        open override func viewWillLayoutSubviews() {
+            self.tableView.frame = self.view.bounds
+        }
+
         /// Start listening
         public func listen() {
             self.dataSource.listen()
@@ -121,15 +130,15 @@ extension Muni {
 
         // MARK: -
 
-        open override func numberOfSections(in tableView: UITableView) -> Int {
+        open func numberOfSections(in tableView: UITableView) -> Int {
             return 1
         }
 
-        open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return self.dataSource.count
         }
 
-        open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let room: RoomType = self.dataSource[indexPath.item]
             let cell: InboxViewCell = tableView.dequeueReusableCell(withIdentifier: "InboxViewCell", for: indexPath) as! InboxViewCell
 
@@ -155,13 +164,13 @@ extension Muni {
             return cell
         }
 
-        open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let room: RoomType = self.dataSource[indexPath.item]
             let viewController: MessagesViewController = messageViewController(with: room)
             self.navigationController?.pushViewController(viewController, animated: true)
         }
 
-        open override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        open func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
             // Cancel image loading
         }
 
@@ -184,7 +193,7 @@ extension Muni {
 
         private var canLoadNextToDataSource: Bool = true
 
-        open override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        open func scrollViewDidScroll(_ scrollView: UIScrollView) {
             if isFirstFetching {
                 self.isFirstFetching = false
                 return
