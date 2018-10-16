@@ -8,6 +8,7 @@
 
 import Pring
 import Muni
+import Firebase
 
 @objcMembers
 class Room: Object, RoomProtocol {
@@ -23,4 +24,5 @@ class Room: Object, RoomProtocol {
     dynamic var config: [String: Any] = [:]
     dynamic var isMessagingEnabled: Bool = true
     dynamic var isHidden: Bool = false
+    dynamic var lastViewedTimestamps: [String : Timestamp] = [:]
 }

@@ -216,8 +216,11 @@ extension Muni {
                     case .error(let error):
                         print(error)
                     }
-                }).onCompleted { [weak self] (_, _) in
+                }).onCompleted { [weak self] (querySnapshot, _) in
                     self?.isLoading = false
+                    if !(querySnapshot?.metadata.hasPendingWrites ?? true) {
+                        self?.markAsRead()
+                    }
             }
         }
 
@@ -249,13 +252,10 @@ extension Muni {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
-            
-            var viewers: [String] = self.room.viewers
-            if !viewers.contains(senderID) {
-                viewers.append(senderID)
-                self.room.updateValue["viewers"] = viewers
-                self.room.update()
-            }
+
+            self.room.updateValue["viewers"] = FieldValue.arrayUnion([senderID])
+            self.room.updateValue["lastViewedTimestamps"] = [senderID: FieldValue.serverTimestamp()]
+            self.room.update()
         }
         
         /// It is called after the first fetch of the data source is finished.

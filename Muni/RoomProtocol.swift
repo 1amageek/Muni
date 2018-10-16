@@ -28,6 +28,9 @@ public protocol RoomProtocol {
     /// Holds the ID of the viewer of the most recent message.
     var viewers: [String] { get set }
 
+    /// Record the last time the viewer saw it.
+    var lastViewedTimestamps: [String: Timestamp] { get set }
+
     /// The message most recently spoken is stored.
     var recentTranscript: [String: Any] { get set }
 
