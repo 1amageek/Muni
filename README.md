@@ -5,11 +5,11 @@ Chat framework
 
 # Feature 🎊
 
-- ☑️ Serverless - Firebase Cloud Firestore
-- ☑️ Realtime
-- ☑️ Customizable
-- ☑️ Type Safe
-- ☑️ Multi Media
+☑️ **Serverless - Firebase Cloud Firestore**<br>
+☑️ **Realtime**<br>
+☑️ **Customizable**<br>
+☑️ **Type Safe**<br>
+☑️ **Multi Media**
 
 #### Media
 - Text
