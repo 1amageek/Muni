@@ -47,11 +47,17 @@ class User: Object, UserProtocol {
 ``` swift
 @objcMembers
 class Room: Object, RoomProtocol {
+    typealias TranscriptType = Transcript
     dynamic var name: String?
     dynamic var thumbnailImage: File?
-    dynamic var members: Set<String> = []
+    dynamic var viewers: [String] = []
+    dynamic var members: [String] = []
     dynamic var recentTranscript: [String: Any] = [:]
+    dynamic var transcripts: NestedCollection<TranscriptType> = []
     dynamic var config: [String: Any] = [:]
+    dynamic var isMessagingEnabled: Bool = true
+    dynamic var isHidden: Bool = false
+    dynamic var lastViewedTimestamps: [String : Timestamp] = [:]
 }
 ```
 
