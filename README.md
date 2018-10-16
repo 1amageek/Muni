@@ -3,6 +3,24 @@ Chat framework
 
 <img src="https://github.com/1amageek/Muni/blob/master/sample.gif" width="500">
 
+# Feature 🎊
+
+- ☑️ Serverless - Firebase Cloud Firestore
+- ☑️ Realtime
+- ☑️ Customizable
+- ☑️ Type Safe
+- ☑️ Multi Media
+
+#### Media
+- Text
+- Image
+- Video
+- Audio
+- Location
+- Sticker
+- ImageMap
+
+
 # Installation
 
 `pod 'Muni'` add to your Podfile
