@@ -21,7 +21,7 @@ Chat framework
 - ImageMap
 
 
-# Installation
+# Installation ⚙
 
 `pod 'Muni'` add to your Podfile
 
