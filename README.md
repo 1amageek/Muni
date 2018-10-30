@@ -3,7 +3,25 @@ Chat framework
 
 <img src="https://github.com/1amageek/Muni/blob/master/sample.gif" width="500">
 
-# Installation
+# Feature 🎊
+
+☑️ **Serverless - Firebase Cloud Firestore**<br>
+☑️ **Realtime**<br>
+☑️ **Customizable**<br>
+☑️ **Type Safe**<br>
+☑️ **Multi Media**
+
+#### Media
+- Text
+- Image
+- Video
+- Audio
+- Location
+- Sticker
+- ImageMap
+
+
+# Installation ⚙
 
 `pod 'Muni'` add to your Podfile
 
@@ -29,11 +47,17 @@ class User: Object, UserProtocol {
 ``` swift
 @objcMembers
 class Room: Object, RoomProtocol {
+    typealias TranscriptType = Transcript
     dynamic var name: String?
     dynamic var thumbnailImage: File?
-    dynamic var members: Set<String> = []
+    dynamic var viewers: [String] = []
+    dynamic var members: [String] = []
     dynamic var recentTranscript: [String: Any] = [:]
+    dynamic var transcripts: NestedCollection<TranscriptType> = []
     dynamic var config: [String: Any] = [:]
+    dynamic var isMessagingEnabled: Bool = true
+    dynamic var isHidden: Bool = false
+    dynamic var lastViewedTimestamps: [String : Timestamp] = [:]
 }
 ```
 
