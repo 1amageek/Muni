@@ -210,6 +210,7 @@ extension Muni {
             // Cancel image loading
         }
 
+        @available(iOS 11.0, *)
         open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
             return nil
         }
