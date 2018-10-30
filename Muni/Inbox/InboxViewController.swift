@@ -128,6 +128,42 @@ extension Muni {
             // override
         }
 
+        /// Transit to the selected Room. Always override this function.
+        /// - parameter room: The selected Room is passed.
+        /// - returns: Returns the MessagesViewController to transition.
+        open func messageViewController(with room: RoomType) -> MessagesViewController {
+            return MessagesViewController(roomID: room.id)
+        }
+
+        // MARK: -
+
+        private var threshold: CGFloat {
+            if #available(iOS 11.0, *) {
+                return -self.view.safeAreaInsets.top
+            } else {
+                return -self.view.layoutMargins.top
+            }
+        }
+
+        private var canLoadNextToDataSource: Bool = true
+
+        open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            if isFirstFetching {
+                self.isFirstFetching = false
+                return
+            }
+            // TODO: スクロールが逆になってる問題
+            if canLoadNextToDataSource && scrollView.contentOffset.y < threshold && !scrollView.isDecelerating {
+                if !self.dataSource.isLast && self.limit <= self.dataSource.count {
+                    self.isLoading = true
+                    self.canLoadNextToDataSource = false
+                }
+            }
+            if !canLoadNextToDataSource && !scrollView.isTracking && scrollView.contentOffset.y <= threshold {
+                self.canLoadNextToDataSource = true
+            }
+        }
+
         // MARK: -
 
         open func numberOfSections(in tableView: UITableView) -> Int {
@@ -174,40 +210,8 @@ extension Muni {
             // Cancel image loading
         }
 
-        /// Transit to the selected Room. Always override this function.
-        /// - parameter room: The selected Room is passed.
-        /// - returns: Returns the MessagesViewController to transition.
-        open func messageViewController(with room: RoomType) -> MessagesViewController {
-            return MessagesViewController(roomID: room.id)
-        }
-
-        // MARK: -
-
-        private var threshold: CGFloat {
-            if #available(iOS 11.0, *) {
-                return -self.view.safeAreaInsets.top
-            } else {
-                return -self.view.layoutMargins.top
-            }
-        }
-
-        private var canLoadNextToDataSource: Bool = true
-
-        open func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            if isFirstFetching {
-                self.isFirstFetching = false
-                return
-            }
-            // TODO: スクロールが逆になってる問題
-            if canLoadNextToDataSource && scrollView.contentOffset.y < threshold && !scrollView.isDecelerating {
-                if !self.dataSource.isLast && self.limit <= self.dataSource.count {
-                    self.isLoading = true
-                    self.canLoadNextToDataSource = false
-                }
-            }
-            if !canLoadNextToDataSource && !scrollView.isTracking && scrollView.contentOffset.y <= threshold {
-                self.canLoadNextToDataSource = true
-            }
+        open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            return nil
         }
     }
 }

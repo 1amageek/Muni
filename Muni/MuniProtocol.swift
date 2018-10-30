@@ -16,7 +16,7 @@ import FirebaseStorage
  In order to use the chat function, it is necessary to conform to the protocol of
  User Protocol, Room Protocol, Transcript Protocol.
  */
-public class Muni<
+open class Muni<
     UserType: UserProtocol,
     RoomType: RoomProtocol,
     TranscriptType: TranscriptProtocol
