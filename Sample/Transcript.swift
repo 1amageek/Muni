@@ -8,7 +8,6 @@
 
 import Pring
 import FirebaseFirestore
-import Muni
 
 @objcMembers
 class Transcript: Object, TranscriptProtocol {

@@ -272,28 +272,36 @@ extension Muni {
             var room: RoomType = self.room
             let transcript: TranscriptType = TranscriptType()
             let sender: UserType = UserType(id: senderID, value: [:])
+            let batch: WriteBatch = Firestore.firestore().batch()
             transcript.from.set(sender)
             transcript.to.set(room)
-            if !self.transcript(willSend: transcript) {
-                return
-            }
             room.viewers = [senderID]
             room.recentTranscript = transcript.value
             room.transcripts.insert(transcript)
-            room.update { [weak self] (error) in
-                self?.transcript(didSend: transcript, reference: transcript.reference, error: error)
+
+            if !self.transcript(transcript, shouldSendTo: room) {
+                return
             }
+
+            self.transcript(transcript, willSendTo: room)
+            room.update(batch) { [weak self] (error) in
+                self?.transcript(transcript, didSend: transcript.reference, error: error)
+            }
+        }
+
+        /// - returns: If false is set, messages will not be sent.
+        open func transcript(_ transcript: TranscriptType, shouldSendTo room: RoomType) -> Bool {
+            return true
         }
         
         /// Set contents in Transcript.
         /// It must be overridden.
-        /// - returns: If false is set, messages will not be sent.
-        open func transcript(willSend transcript: TranscriptType) -> Bool {
-            return false
+        open func transcript(_ transcript: TranscriptType, willSendTo room: RoomType) {
+
         }
         
         /// Called after the message has been sent.
-        open func transcript(didSend transcript: TranscriptType, reference: DocumentReference?, error: Error?) {
+        open func transcript(_ transcript: TranscriptType, didSend reference: DocumentReference?, error: Error?) {
             
         }
         
@@ -305,6 +313,14 @@ extension Muni {
         
         open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return self.dataSource.count
+        }
+
+        open func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+            return true
+        }
+
+        public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         }
         
         open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

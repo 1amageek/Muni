@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import Muni
 import Pring
 import FirebaseAuth
-import Muni
 
 class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
 

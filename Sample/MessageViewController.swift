@@ -10,7 +10,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 import Toolbar
-import Muni
 import Instantiate
 import InstantiateStandard
 
@@ -35,15 +34,14 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         self.listen()
     }
 
-    override func transcript(willSend transcript: Transcript) -> Bool {
-        guard let text: String = self.textView.text else { return false }
-        if text.isEmpty { return false }
+    override func transcript(_ transcript: Transcript, willSendTo room: Room) {
+        guard let text: String = self.textView.text else { return }
+        if text.isEmpty { return }
         transcript.text = text
         self.textView.text = nil
-        return true
     }
 
-    override func transcript(didSend transcript: Transcript, reference: DocumentReference?, error: Error?) {
+    override func transcript(_ transcript: Transcript, didSend reference: DocumentReference?, error: Error?) {
         UIView.animate(withDuration: 0.3) {
             self.textViewDidChange(self.textView)
             self.textView.layoutIfNeeded()

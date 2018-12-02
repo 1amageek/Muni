@@ -9,7 +9,6 @@
 import UIKit
 import Instantiate
 import InstantiateStandard
-import Muni
 
 class HeaderCell: MessageViewCell, NibType, Reusable, NibInstantiatable {
     
