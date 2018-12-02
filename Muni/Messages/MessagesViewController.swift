@@ -283,9 +283,9 @@ extension Muni {
                 return
             }
 
-            self.transcript(transcript, willSendTo: room)
+            self.transcript(transcript, willSendTo: room, with: batch)
             room.update(batch) { [weak self] (error) in
-                self?.transcript(transcript, didSend: transcript.reference, error: error)
+                self?.transcript(transcript, didSend: room, reference: transcript.reference, error: error)
             }
         }
 
@@ -296,12 +296,12 @@ extension Muni {
         
         /// Set contents in Transcript.
         /// It must be overridden.
-        open func transcript(_ transcript: TranscriptType, willSendTo room: RoomType) {
+        open func transcript(_ transcript: TranscriptType, willSendTo room: RoomType, with batch: WriteBatch) {
 
         }
         
         /// Called after the message has been sent.
-        open func transcript(_ transcript: TranscriptType, didSend reference: DocumentReference?, error: Error?) {
+        open func transcript(_ transcript: TranscriptType, didSend room: RoomType, reference: DocumentReference?, error: Error?) {
             
         }
         

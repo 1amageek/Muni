@@ -34,14 +34,14 @@ class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController
         self.listen()
     }
 
-    override func transcript(_ transcript: Transcript, willSendTo room: Room) {
+    override func transcript(_ transcript: Transcript, willSendTo room: Room, with batch: WriteBatch) {
         guard let text: String = self.textView.text else { return }
         if text.isEmpty { return }
         transcript.text = text
         self.textView.text = nil
     }
 
-    override func transcript(_ transcript: Transcript, didSend reference: DocumentReference?, error: Error?) {
+    override func transcript(_ transcript: Transcript, didSend room: Room, reference: DocumentReference?, error: Error?) {
         UIView.animate(withDuration: 0.3) {
             self.textViewDidChange(self.textView)
             self.textView.layoutIfNeeded()
