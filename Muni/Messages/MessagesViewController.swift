@@ -275,15 +275,13 @@ extension Muni {
             let batch: WriteBatch = Firestore.firestore().batch()
             transcript.from.set(sender)
             transcript.to.set(room)
-            room.viewers = [senderID]
-            room.recentTranscript = transcript.value
-            room.transcripts.insert(transcript)
-
             if !self.transcript(transcript, shouldSendTo: room) {
                 return
             }
-
             self.transcript(transcript, willSendTo: room, with: batch)
+            room.viewers = [senderID]
+            room.recentTranscript = transcript.value
+            room.transcripts.insert(transcript)
             room.update(batch) { [weak self] (error) in
                 self?.transcript(transcript, didSend: room, reference: transcript.reference, error: error)
             }
@@ -319,7 +317,7 @@ extension Muni {
             return true
         }
 
-        public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         }
         
@@ -403,7 +401,7 @@ extension Muni {
         
         // MARK: -
         
-        public func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        open func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
             
         }
         
@@ -417,7 +415,7 @@ extension Muni {
         
         // MARK: -
         
-        public func textViewDidBeginEditing(_ textView: UITextView) {
+        open func textViewDidBeginEditing(_ textView: UITextView) {
             if scrollsToBottomOnKeybordBeginsEditing {
                 collectionView.scrollToBottom(animated: true)
             }
@@ -431,6 +429,10 @@ extension Muni {
             self.constraint = textView.heightAnchor.constraint(equalToConstant: size.height)
             self.constraint?.priority = .defaultHigh
             self.constraint?.isActive = true
+        }
+
+        open func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+            return true
         }
         
         // MARK: -
