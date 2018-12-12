@@ -29,6 +29,8 @@ class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
     }
 
     override func messageViewController(with room: Room) -> Muni<User, Room, Transcript>.MessagesViewController {
-        return MessageViewController(room: room)
+        let viewController: MessageViewController = MessageViewController(room: room)
+        viewController.hidesBottomBarWhenPushed = true
+        return viewController
     }
 }

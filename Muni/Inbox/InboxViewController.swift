@@ -83,6 +83,8 @@ extension Muni {
 
         open override func loadView() {
             super.loadView()
+//            self.view.translatesAutoresizingMaskIntoConstraints = false
+//            self.tableView.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(self.tableView)
             self.tableView.register(UINib(nibName: "InboxViewCell", bundle: nil), forCellReuseIdentifier: "InboxViewCell")
         }
@@ -91,6 +93,7 @@ extension Muni {
             super.viewDidLoad()
             self.tableView.delegate = self
             self.tableView.dataSource = self
+            self.tableView.rowHeight = 80
             self.dataSource
                 .on({ [weak self] (snapshot, changes) in
                     guard let tableView: UITableView = self?.tableView else { return }

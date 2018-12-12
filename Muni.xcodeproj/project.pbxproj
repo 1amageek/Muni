@@ -20,7 +20,6 @@
 		1227D062217329EE00040B49 /* MessagesTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129585E92117D600001F00FA /* MessagesTitleView.xib */; };
 		1227D063217329EE00040B49 /* MessagesTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129585EB2117D6FE001F00FA /* MessagesTitleView.swift */; };
 		1227D064217329EE00040B49 /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB61C210B322B0023CC04 /* MessageViewCell.swift */; };
-		1227D065217329EE00040B49 /* MessageViewLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */; };
 		1227D066217329EE00040B49 /* MessageViewLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB622210B410B0023CC04 /* MessageViewLeftCell.swift */; };
 		1227D067217329EE00040B49 /* MessageViewRightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */; };
 		1227D068217329EE00040B49 /* MessageViewRightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB624210B412A0023CC04 /* MessageViewRightCell.swift */; };
@@ -48,7 +47,6 @@
 		128180D621104F9300F1E20D /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1229891D210B146D00068424 /* MessagesView.swift */; };
 		128180D921104FEC00F1E20D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128180D821104FEC00F1E20D /* MessageViewController.swift */; };
 		128180DB2110568000F1E20D /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB61C210B322B0023CC04 /* MessageViewCell.swift */; };
-		128180DC2110568000F1E20D /* MessageViewLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */; };
 		128180DD2110568000F1E20D /* MessageViewLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB622210B410B0023CC04 /* MessageViewLeftCell.swift */; };
 		128180DE2110568000F1E20D /* MessageViewRightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */; };
 		128180DF2110568000F1E20D /* MessageViewRightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEB624210B412A0023CC04 /* MessageViewRightCell.swift */; };
@@ -58,6 +56,8 @@
 		128180E9211069BC00F1E20D /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122988D4210AE10D00068424 /* InboxViewController.swift */; };
 		129585EA2117D600001F00FA /* MessagesTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129585E92117D600001F00FA /* MessagesTitleView.xib */; };
 		129585EC2117D6FE001F00FA /* MessagesTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129585EB2117D6FE001F00FA /* MessagesTitleView.swift */; };
+		12B1863C21C0C6AB009632D6 /* MessageViewLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12B1863B21C0C6AB009632D6 /* MessageViewLeftCell.xib */; };
+		12B1863D21C0C95E009632D6 /* MessageViewLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12B1863B21C0C6AB009632D6 /* MessageViewLeftCell.xib */; };
 		12E521392165BE7D00BD34D8 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12E521382165BE7D00BD34D8 /* HeaderCell.xib */; };
 		12E5213B2165BEC000BD34D8 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E5213A2165BEC000BD34D8 /* HeaderCell.swift */; };
 		3DC4CB539A669C0291F96886 /* Pods_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F0617ACEEBD1F60A61BBC9 /* Pods_Sample.framework */; };
@@ -129,10 +129,10 @@
 		128180E62110648600F1E20D /* BoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxViewController.swift; sourceTree = "<group>"; };
 		129585E92117D600001F00FA /* MessagesTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesTitleView.xib; sourceTree = "<group>"; };
 		129585EB2117D6FE001F00FA /* MessagesTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTitleView.swift; sourceTree = "<group>"; };
+		12B1863B21C0C6AB009632D6 /* MessageViewLeftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewLeftCell.xib; sourceTree = "<group>"; };
 		12E521382165BE7D00BD34D8 /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
 		12E5213A2165BEC000BD34D8 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		12EEB61C210B322B0023CC04 /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
-		12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewLeftCell.xib; sourceTree = "<group>"; };
 		12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewRightCell.xib; sourceTree = "<group>"; };
 		12EEB622210B410B0023CC04 /* MessageViewLeftCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewLeftCell.swift; sourceTree = "<group>"; };
 		12EEB624210B412A0023CC04 /* MessageViewRightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewRightCell.swift; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 				129585E92117D600001F00FA /* MessagesTitleView.xib */,
 				129585EB2117D6FE001F00FA /* MessagesTitleView.swift */,
 				12EEB61C210B322B0023CC04 /* MessageViewCell.swift */,
-				12EEB61E210B40D40023CC04 /* MessageViewLeftCell.xib */,
+				12B1863B21C0C6AB009632D6 /* MessageViewLeftCell.xib */,
 				12EEB622210B410B0023CC04 /* MessageViewLeftCell.swift */,
 				12EEB620210B40E20023CC04 /* MessageViewRightCell.xib */,
 				12EEB624210B412A0023CC04 /* MessageViewRightCell.swift */,
@@ -505,7 +505,7 @@
 				128180E42110620900F1E20D /* InboxViewCell.xib in Resources */,
 				129585EA2117D600001F00FA /* MessagesTitleView.xib in Resources */,
 				124A08432112132100C235CA /* Muni.podspec in Resources */,
-				128180DC2110568000F1E20D /* MessageViewLeftCell.xib in Resources */,
+				12B1863C21C0C6AB009632D6 /* MessageViewLeftCell.xib in Resources */,
 				128180DE2110568000F1E20D /* MessageViewRightCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,7 +524,7 @@
 				12E521392165BE7D00BD34D8 /* HeaderCell.xib in Resources */,
 				122988DD210AE10E00068424 /* LaunchScreen.storyboard in Resources */,
 				12298918210B022400068424 /* ViewController.storyboard in Resources */,
-				1227D065217329EE00040B49 /* MessageViewLeftCell.xib in Resources */,
+				12B1863D21C0C95E009632D6 /* MessageViewLeftCell.xib in Resources */,
 				1227D062217329EE00040B49 /* MessagesTitleView.xib in Resources */,
 				1227D05E217329EA00040B49 /* InboxViewCell.xib in Resources */,
 				1227D067217329EE00040B49 /* MessageViewRightCell.xib in Resources */,
@@ -929,7 +929,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Muni/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -958,7 +958,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Muni/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

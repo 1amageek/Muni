@@ -325,35 +325,43 @@ extension Muni {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
-            let transcript: TranscriptType = self.dataSource[indexPath.item]
-            
-            var day: String? = nil
-            if indexPath.item == 0 {
-                day = self.dateFormatter.string(from: transcript.updatedAt)
-            } else if indexPath.item > 0 {
-                let previousIndex: Int = indexPath.item - 1
-                let previousTranscript: TranscriptType = self.dataSource[previousIndex]
-                let previousDateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: previousTranscript.updatedAt)
-                let dateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: transcript.updatedAt)
-                if dateComponents.day != previousDateComponents.day {
+
+            if indexPath.section == self.targetSection {
+                let transcript: TranscriptType = self.dataSource[indexPath.item]
+                var day: String? = nil
+                if indexPath.item == 0 {
                     day = self.dateFormatter.string(from: transcript.updatedAt)
+                } else if indexPath.item > 0 {
+                    let previousIndex: Int = indexPath.item - 1
+                    let previousTranscript: TranscriptType = self.dataSource[previousIndex]
+                    let previousDateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: previousTranscript.updatedAt)
+                    let dateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: transcript.updatedAt)
+                    if dateComponents.day != previousDateComponents.day {
+                        day = self.dateFormatter.string(from: transcript.updatedAt)
+                    }
                 }
-            }
-            
-            if transcript.from.id! == senderID {
-                let cell: MessageViewRightCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewRightCell", for: indexPath) as! MessageViewRightCell
-                cell.titleLabel.isHidden = day == nil
-                cell.titleLabel.text = day
-                cell.textLabel.text = transcript.text
-                cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt)
-                return cell
+
+                if transcript.from.id! == senderID {
+                    let cell: MessageViewRightCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewRightCell", for: indexPath) as! MessageViewRightCell
+                    if let day: String = day {
+                        cell.titleLabel.text = day
+                        cell.isDateSectionHeaderHidden = false
+                    }
+                    cell.textLabel.text = transcript.text
+                    cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt)
+                    return cell
+                } else {
+                    let cell: MessageViewLeftCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewLeftCell", for: indexPath) as! MessageViewLeftCell
+                    if let day: String = day {
+                        cell.titleLabel.text = day
+                        cell.isDateSectionHeaderHidden = false
+                    }
+                    cell.textLabel.text = transcript.text
+                    cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt)
+                    return cell
+                }
             } else {
-                let cell: MessageViewLeftCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewLeftCell", for: indexPath) as! MessageViewLeftCell
-                cell.titleLabel.isHidden = day == nil
-                cell.titleLabel.text = day
-                cell.textLabel.text = transcript.text
-                cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt)
-                return cell
+                fatalError("[Muni] error: targetSection is incorrect..")
             }
         }
         
@@ -365,37 +373,45 @@ extension Muni {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
-            let transcript: TranscriptType = self.dataSource[indexPath.item]
-            
-            var day: String? = nil
-            if indexPath.item == 0 {
-                day = self.dateFormatter.string(from: transcript.updatedAt)
-            } else if indexPath.item > 0 {
-                let previousIndex: Int = indexPath.item - 1
-                let previousTranscript: TranscriptType = self.dataSource[previousIndex]
-                let previousDateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: previousTranscript.updatedAt)
-                let dateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: transcript.updatedAt)
-                if dateComponents.day != previousDateComponents.day {
+
+            if indexPath.section == self.targetSection {
+                let transcript: TranscriptType = self.dataSource[indexPath.item]
+                var day: String? = nil
+                if indexPath.item == 0 {
                     day = self.dateFormatter.string(from: transcript.updatedAt)
+                } else if indexPath.item > 0 {
+                    let previousIndex: Int = indexPath.item - 1
+                    let previousTranscript: TranscriptType = self.dataSource[previousIndex]
+                    let previousDateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: previousTranscript.updatedAt)
+                    let dateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: transcript.updatedAt)
+                    if dateComponents.day != previousDateComponents.day {
+                        day = self.dateFormatter.string(from: transcript.updatedAt)
+                    }
                 }
-            }
-            
-            if transcript.from.id! == senderID {
-                let cell: MessageViewRightCell = UINib(nibName: "MessageViewRightCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MessageViewRightCell
-                cell.textLabel.text = transcript.text
-                cell.titleLabel.isHidden = day == nil
-                cell.titleLabel.text = day
-                var size: CGSize = cell.sizeThatFits(.zero)
-                size.width = UIScreen.main.bounds.width
-                return size
+
+                if transcript.from.id! == senderID {
+                    let cell: MessageViewRightCell = UINib(nibName: "MessageViewRightCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MessageViewRightCell
+                    cell.textLabel.text = transcript.text
+                    if let day: String = day {
+                        cell.titleLabel.text = day
+                        cell.isDateSectionHeaderHidden = false
+                    }
+                    var size: CGSize = cell.sizeThatFits(.zero)
+                    size.width = UIScreen.main.bounds.width
+                    return size
+                } else {
+                    let cell: MessageViewLeftCell = UINib(nibName: "MessageViewLeftCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MessageViewLeftCell
+                    cell.textLabel.text = transcript.text
+                    if let day: String = day {
+                        cell.titleLabel.text = day
+                        cell.isDateSectionHeaderHidden = false
+                    }
+                    var size: CGSize = cell.sizeThatFits(.zero)
+                    size.width = UIScreen.main.bounds.width
+                    return size
+                }
             } else {
-                let cell: MessageViewLeftCell = UINib(nibName: "MessageViewLeftCell", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MessageViewLeftCell
-                cell.textLabel.text = transcript.text
-                cell.titleLabel.isHidden = day == nil
-                cell.titleLabel.text = day
-                var size: CGSize = cell.sizeThatFits(.zero)
-                size.width = UIScreen.main.bounds.width
-                return size
+                fatalError("[Muni] error: targetSection is incorrect.")
             }
         }
         
@@ -409,7 +425,7 @@ extension Muni {
         
         @objc internal func keyboardWillChangeFrame(_ notification: Notification) {
             guard let keyboardEndFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-            let newBottomInset: CGFloat = self.view.frame.height - keyboardEndFrame.minY - self.collectionView.safeAreaBottomInset
+            let newBottomInset: CGFloat = self.view.frame.height - keyboardEndFrame.minY + self.view.frame.origin.y - self.collectionView.safeAreaBottomInset
             collectionViewBottomInset = newBottomInset
         }
         

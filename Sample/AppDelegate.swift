@@ -38,7 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 user.save({ (_, _) in
                     let viewController: BoxViewController = BoxViewController(userID: user.id)
                     let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
-                    self?.window?.rootViewController = navigationController
+                    let tabbarController: UITabBarController = UITabBarController(nibName: nil, bundle: nil)
+                    tabbarController.setViewControllers([navigationController], animated: true)
+                    self?.window?.rootViewController = tabbarController
                     self?.window?.makeKeyAndVisible()
                 })
             }
@@ -58,7 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let viewController: BoxViewController = BoxViewController(userID: user.uid)
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
-        self.window?.rootViewController = navigationController
+//        navigationController.navigationBar.isTranslucent = false
+        let tabbarController: UITabBarController = UITabBarController(nibName: nil, bundle: nil)
+        tabbarController.setViewControllers([navigationController], animated: true)
+        self.window?.rootViewController = tabbarController
         self.window?.makeKeyAndVisible()
 
         return true

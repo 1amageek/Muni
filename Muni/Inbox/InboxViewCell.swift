@@ -34,6 +34,19 @@ open class InboxViewCell: UITableViewCell {
     @IBOutlet open weak var messageLabel: UILabel!
     @IBOutlet open weak var dateLabel: UILabel!
 
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
+        self.contentView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+//        self.translatesAutoresizingMaskIntoConstraints = false
+//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
+//        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+
     open override func awakeFromNib() {
         super.awakeFromNib()
         self.thumbnailImageView.layer.cornerRadius = 32
@@ -49,5 +62,13 @@ open class InboxViewCell: UITableViewCell {
         self.messageLabel.text = nil
         self.dateLabel.text = nil
         self.format = .normal
+    }
+
+    open override func setSelected(_ selected: Bool, animated: Bool) {
+
+    }
+
+    open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        
     }
 }

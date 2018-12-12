@@ -12,6 +12,10 @@ open class MessageViewCell: UICollectionViewCell {
 
     open private(set) var cacheSize: CGSize?
 
+    open func resetCacheSize() {
+        self.cacheSize = nil
+    }
+
     open override func prepareForReuse() {
         super.prepareForReuse()
         self.cacheSize = nil
