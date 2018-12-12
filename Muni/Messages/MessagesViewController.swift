@@ -347,14 +347,14 @@ extension Muni {
                 let transcript: TranscriptType = self.dataSource[indexPath.item]
                 var day: String? = nil
                 if indexPath.item == 0 {
-                    day = self.dateFormatter.string(from: transcript.updatedAt)
+                    day = self.dateFormatter.string(from: transcript.updatedAt.dateValue())
                 } else if indexPath.item > 0 {
                     let previousIndex: Int = indexPath.item - 1
                     let previousTranscript: TranscriptType = self.dataSource[previousIndex]
-                    let previousDateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: previousTranscript.updatedAt)
-                    let dateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: transcript.updatedAt)
+                    let previousDateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: previousTranscript.updatedAt.dateValue())
+                    let dateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: transcript.updatedAt.dateValue())
                     if dateComponents.day != previousDateComponents.day {
-                        day = self.dateFormatter.string(from: transcript.updatedAt)
+                        day = self.dateFormatter.string(from: transcript.updatedAt.dateValue())
                     }
                 }
 
@@ -365,7 +365,7 @@ extension Muni {
                         cell.isDateSectionHeaderHidden = false
                     }
                     cell.textLabel.text = transcript.text
-                    cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt)
+                    cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt.dateValue())
                     return cell
                 } else {
                     let cell: MessageViewLeftCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MessageViewLeftCell", for: indexPath) as! MessageViewLeftCell
@@ -374,7 +374,7 @@ extension Muni {
                         cell.isDateSectionHeaderHidden = false
                     }
                     cell.textLabel.text = transcript.text
-                    cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt)
+                    cell.dateLabel.text = self.timeFormatter.string(from: transcript.updatedAt.dateValue())
                     return cell
                 }
             } else {
@@ -395,14 +395,14 @@ extension Muni {
                 let transcript: TranscriptType = self.dataSource[indexPath.item]
                 var day: String? = nil
                 if indexPath.item == 0 {
-                    day = self.dateFormatter.string(from: transcript.updatedAt)
+                    day = self.dateFormatter.string(from: transcript.updatedAt.dateValue())
                 } else if indexPath.item > 0 {
                     let previousIndex: Int = indexPath.item - 1
                     let previousTranscript: TranscriptType = self.dataSource[previousIndex]
-                    let previousDateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: previousTranscript.updatedAt)
-                    let dateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: transcript.updatedAt)
+                    let previousDateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: previousTranscript.updatedAt.dateValue())
+                    let dateComponents: DateComponents = self.calendar.dateComponents(in: TimeZone.current, from: transcript.updatedAt.dateValue())
                     if dateComponents.day != previousDateComponents.day {
-                        day = self.dateFormatter.string(from: transcript.updatedAt)
+                        day = self.dateFormatter.string(from: transcript.updatedAt.dateValue())
                     }
                 }
 

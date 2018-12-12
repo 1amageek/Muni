@@ -184,7 +184,7 @@ extension Muni {
             let room: RoomType = self.dataSource[indexPath.item]
             let cell: InboxViewCell = tableView.dequeueReusableCell(withIdentifier: "InboxViewCell", for: indexPath) as! InboxViewCell
 
-            cell.dateLabel.text = self.dateFormatter.string(from: room.updatedAt)
+            cell.dateLabel.text = self.dateFormatter.string(from: room.updatedAt.dateValue())
 
             if let name: String = room.name {
                 cell.nameLabel.text = name
