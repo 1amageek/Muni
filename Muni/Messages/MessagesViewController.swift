@@ -209,6 +209,7 @@ extension Muni {
                             collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: section) })
                             collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: section) })
                             collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: section) })
+                            collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
                             if snapshot?.metadata.hasPendingWrites ?? false {
                                 collectionView.scrollToBottom(animated: true)
                             }
@@ -320,7 +321,23 @@ extension Muni {
         open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         }
-        
+
+        open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+
+        }
+
+        open func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+            return false
+        }
+
+        open func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+            return true
+        }
+
+        open func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+            return true
+        }
+
         open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")

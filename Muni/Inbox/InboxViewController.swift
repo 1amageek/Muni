@@ -83,8 +83,6 @@ extension Muni {
 
         open override func loadView() {
             super.loadView()
-//            self.view.translatesAutoresizingMaskIntoConstraints = false
-//            self.tableView.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(self.tableView)
             self.tableView.register(UINib(nibName: "InboxViewCell", bundle: nil), forCellReuseIdentifier: "InboxViewCell")
         }
@@ -113,6 +111,11 @@ extension Muni {
                         print(error)
                     }
                 })
+        }
+
+        open override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            self.tableView.reloadData()
         }
 
         open override func viewWillLayoutSubviews() {
