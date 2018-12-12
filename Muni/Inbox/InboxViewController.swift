@@ -91,7 +91,7 @@ extension Muni {
             super.viewDidLoad()
             self.tableView.delegate = self
             self.tableView.dataSource = self
-            self.tableView.rowHeight = 80
+            self.tableView.rowHeight = UITableView.automaticDimension
             self.dataSource
                 .on({ [weak self] (snapshot, changes) in
                     guard let tableView: UITableView = self?.tableView else { return }
