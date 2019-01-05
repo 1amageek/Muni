@@ -31,6 +31,8 @@ extension Muni {
         
         /// Returns a CollectionView that displays a message.
         public private(set) var collectionView: MessagesView!
+
+        public private(set) var viewer: Viewer?
         
         /// Returns a Section that reflects the update of the data source.
         open var targetSection: Int {
@@ -119,7 +121,9 @@ extension Muni {
         internal var constraint: NSLayoutConstraint?
         
         internal var isFirstFetching: Bool = true
-        
+
+        internal var viewerDisposer: Disposer<Viewer>?
+
         internal var collectionViewBottomInset: CGFloat = 0 {
             didSet {
                 self.collectionView.contentInset.bottom = collectionViewBottomInset
@@ -231,7 +235,17 @@ extension Muni {
 
         /// Start listening
         open func listen() {
+            guard let senderID: String = self.senderID else {
+                fatalError("[Muni] error: You need to override senderID.")
+            }
             self.dataSource.listen()
+            self.viewerDisposer = self.room.viewers.doc(senderID).listen { [weak self] (viewer, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                self?.viewer = viewer
+            }
         }
         
         open override func viewDidAppear(_ animated: Bool) {
@@ -253,10 +267,20 @@ extension Muni {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
-
-            self.room.updateValue["viewers"] = FieldValue.arrayUnion([senderID])
-            self.room.updateValue["lastViewedTimestamps"] = [senderID: FieldValue.serverTimestamp()]
-            self.room.update()
+            self.room.hasNewMessages = false
+            if let viewer: Viewer = self.viewer, let transcript: TranscriptType = self.dataSource.last {
+                if viewer.updatedAt.dateValue() < transcript.updatedAt.dateValue() {
+                    self.room.viewers.reference.document(senderID).setData([
+                        "createdAt" : FieldValue.serverTimestamp(),
+                        "updatedAt" : FieldValue.serverTimestamp()
+                        ], merge: true)
+                }
+            } else {
+                self.room.viewers.reference.document(senderID).setData([
+                    "createdAt" : FieldValue.serverTimestamp(),
+                    "updatedAt" : FieldValue.serverTimestamp()
+                    ], merge: true)
+            }
         }
         
         /// It is called after the first fetch of the data source is finished.
@@ -270,7 +294,7 @@ extension Muni {
             guard let senderID: String = self.senderID else {
                 fatalError("[Muni] error: You need to override senderID.")
             }
-            var room: RoomType = self.room
+            let room: RoomType = self.room
             let transcript: TranscriptType = TranscriptType()
             let sender: UserType = UserType(id: senderID, value: [:])
             let batch: WriteBatch = Firestore.firestore().batch()
@@ -280,7 +304,6 @@ extension Muni {
                 return
             }
             self.transcript(transcript, willSendTo: room, with: batch)
-            room.viewers = [senderID]
             room.recentTranscript = transcript.value
             room.transcripts.insert(transcript)
             room.update(batch) { [weak self] (error) in

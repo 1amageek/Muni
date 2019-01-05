@@ -14,11 +14,13 @@ class Room: Object, RoomProtocol {
 
     typealias TranscriptType = Transcript
 
+    var hasNewMessages: Bool = false
+
     dynamic var name: String?
     dynamic var thumbnailImage: File?
-    dynamic var viewers: [String] = []
     dynamic var members: [String] = []
     dynamic var recentTranscript: [String: Any] = [:]
+    dynamic var viewers: NestedCollection<Viewer> = []
     dynamic var transcripts: NestedCollection<TranscriptType> = []
     dynamic var config: [String: Any] = [:]
     dynamic var isMessagingEnabled: Bool = true

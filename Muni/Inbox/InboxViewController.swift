@@ -93,6 +93,20 @@ extension Muni {
             self.tableView.dataSource = self
             self.tableView.rowHeight = UITableView.automaticDimension
             self.dataSource
+                .on(parse: { (_, room, done) in
+                    room.viewers.get(self.userID) { (viewer, error) in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                        if let viewer: Viewer = viewer {
+                            room.hasNewMessages = room.updatedAt.dateValue() > viewer.updatedAt.dateValue()
+                        } else {
+                            room.hasNewMessages = true
+                        }
+                        done(room)
+                    }
+                })
                 .on({ [weak self] (snapshot, changes) in
                     guard let tableView: UITableView = self?.tableView else { return }
                     guard let dataSource: DataSource<RoomType> = self?.dataSource else { return }
@@ -183,9 +197,7 @@ extension Muni {
         open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let room: RoomType = self.dataSource[indexPath.item]
             let cell: InboxViewCell = tableView.dequeueReusableCell(withIdentifier: "InboxViewCell", for: indexPath) as! InboxViewCell
-
             cell.dateLabel.text = self.dateFormatter.string(from: room.updatedAt.dateValue())
-
             if let name: String = room.name {
                 cell.nameLabel.text = name
             } else if let config: [String: Any] = room.config[self.userID] as? [String: Any] {
@@ -193,16 +205,10 @@ extension Muni {
                     cell.nameLabel.text = config[nameKey] as? String
                 }
             }
-
             if let text: String = room.recentTranscript["text"] as? String {
                 cell.messageLabel?.text = text
             }
-
-            if room.viewers.contains(self.userID) {
-                cell.format = .normal
-            } else {
-                cell.format = .bold
-            }
+            cell.format = room.hasNewMessages ? .bold : .normal
             return cell
         }
 

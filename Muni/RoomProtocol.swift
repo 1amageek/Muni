@@ -9,12 +9,21 @@
 import Pring
 import FirebaseFirestore
 
+public final class Viewer: Object {
+
+}
+
 /**
  Define the properties that the `Room` object should have.
  */
-public protocol RoomProtocol {
+public protocol RoomProtocol: Document {
 
     associatedtype TranscriptType: Object
+
+    /// Room gets a new message.
+    /// This property is not saved to Firestore.
+    /// It should not be a property of Dynamic.
+    var hasNewMessages: Bool { get set }
 
     /// It is the display name of the room.
     var name: String? { get set }
@@ -26,7 +35,7 @@ public protocol RoomProtocol {
     var members: [String] { get set }
 
     /// Holds the ID of the viewer of the most recent message.
-    var viewers: [String] { get set }
+    var viewers: NestedCollection<Viewer> { get set }
 
     /// Record the last time the viewer saw it.
     var lastViewedTimestamps: [String: Timestamp] { get set }
