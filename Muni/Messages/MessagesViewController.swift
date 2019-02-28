@@ -191,6 +191,7 @@ extension Muni {
         open override func viewDidLoad() {
             super.viewDidLoad()
             self.navigationItem.titleView = self.titleView
+            self.addKeyboardObservers()
             self.dataSource
                 .on(parse: { (_, transcript, done) in
                     transcript.from.get({ (user, error) in
@@ -229,8 +230,33 @@ extension Muni {
             }
         }
 
+        open override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+        }
+
         open override func viewWillLayoutSubviews() {
             self.collectionView.frame = self.view.bounds
+        }
+
+        open override func viewDidLayoutSubviews() {
+            self.collectionViewBottomInset = keyboardOffsetFrame.height
+        }
+
+        open override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            self.markAsRead()
+        }
+
+        open override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+        }
+
+        open override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(animated)
+        }
+
+        deinit {
+            self.removeKeyboardObservers()
         }
 
         /// Start listening
@@ -246,21 +272,6 @@ extension Muni {
                 }
                 self?.viewer = viewer
             }
-        }
-        
-        open override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-            self.markAsRead()
-            addKeyboardObservers()
-        }
-        
-        open override func viewDidDisappear(_ animated: Bool) {
-            super.viewDidDisappear(animated)
-            removeKeyboardObservers()
-        }
-        
-        open override func viewDidLayoutSubviews() {
-            self.collectionViewBottomInset = keyboardOffsetFrame.height
         }
         
         open func markAsRead() {
