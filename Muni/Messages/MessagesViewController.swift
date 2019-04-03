@@ -11,7 +11,7 @@ import Pring
 import FirebaseFirestore
 import Toolbar
 
-extension Muni {
+extension Message {
     /**
      A ViewController that displays a message.
      */

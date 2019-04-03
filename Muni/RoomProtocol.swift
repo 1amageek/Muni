@@ -69,11 +69,11 @@ public protocol RoomProtocol: Document {
 
 public extension RoomProtocol {
 
-    public static var configNameKey: String? {
+    static var configNameKey: String? {
         return "name"
     }
 
-    public static var configThumbnailImageURLKey: String? {
+    static var configThumbnailImageURLKey: String? {
         return "thumbnailImageURL"
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Pring
 
-extension Muni {
+extension Message {
     /**
      A ViewController that displays conversation-enabled rooms.
     */
