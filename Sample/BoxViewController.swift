@@ -10,7 +10,7 @@ import UIKit
 import Pring
 import FirebaseAuth
 
-class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
+class BoxViewController: Message<User, Room, Transcript>.InboxViewController {
 
     override func loadView() {
         super.loadView()
@@ -28,7 +28,7 @@ class BoxViewController: Muni<User, Room, Transcript>.InboxViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
-    override func messageViewController(with room: Room) -> Muni<User, Room, Transcript>.MessagesViewController {
+    override func messageViewController(with room: Room) -> Message<User, Room, Transcript>.MessagesViewController {
         let viewController: MessageViewController = MessageViewController(room: room)
         viewController.hidesBottomBarWhenPushed = true
         return viewController

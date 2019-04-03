@@ -13,7 +13,7 @@ import Toolbar
 import Instantiate
 import InstantiateStandard
 
-class MessageViewController: Muni<User, Room, Transcript>.MessagesViewController {
+class MessageViewController: Message<User, Room, Transcript>.MessagesViewController {
 
     var sendBarItem: ToolbarItem!
 

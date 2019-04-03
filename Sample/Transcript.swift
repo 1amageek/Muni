@@ -12,9 +12,9 @@ import FirebaseFirestore
 @objcMembers
 class Transcript: Object, TranscriptProtocol {
 
-    dynamic var to: Relation<Room> = .init()
+    var to: Relation<Room> = .init()
 
-    dynamic var from: Relation<User> = .init()
+    var from: Relation<User> = .init()
 
     dynamic var text: String?
 
